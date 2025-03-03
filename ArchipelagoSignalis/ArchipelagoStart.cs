@@ -1,6 +1,11 @@
-﻿using MelonLoader;
+﻿using System;
+using System.Collections.Generic;
+using MelonLoader;
 using HarmonyLib;
 using UnityEngine;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ArchipelagoSignalis
 {
@@ -16,6 +21,7 @@ namespace ArchipelagoSignalis
         {
             OpenStorageBoxFromAnywhereListener();
             GiveRadio();
+            CheckForF9KeyPress();
         }
 
         private static void OpenStorageBoxFromAnywhereListener()
@@ -41,6 +47,66 @@ namespace ArchipelagoSignalis
             base.OnSceneWasLoaded(buildIndex, sceneName);
             MelonLogger.Msg($"Scene loaded: {sceneName}");
         }
+
+        private static void AddItemToInventory(string itemName)
+        {
+            foreach (AnItem item in InventoryManager.allItems.Values)
+            {
+                if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+                {
+                    MelonLogger.Msg($"Adding item to inventory: {itemName}");
+                    InventoryManager.AddItem(item, 1);
+                }
+            }
+        }
+
+        private static async void CheckForF9KeyPress()
+        {
+            if (Input.GetKeyDown(KeyCode.F9))
+            {
+                MelonLogger.Msg("F9 key pressed");
+                await FetchDataFromApi();
+            }
+        }
+
+        private static async Task FetchDataFromApi()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync("http://localhost:3000/api/data");
+                    response.EnsureSuccessStatusCode();
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<List<ApiResponse>>(responseBody);
+                    if (data != null && data.Count > 0)
+                    {
+                        var itemField = data[0].Item;
+                        MelonLogger.Msg($"Item field extracted: {itemField}");
+                        AddItemToInventory(itemField);
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    MelonLogger.Error($"Request error: {e.Message}");
+                }
+            }
+        }
+    }
+
+    public class ApiResponse
+    {
+        [JsonProperty("item")]
+        public string Item { get; set; }
+
+        [JsonProperty("location")]
+        public int Location { get; set; }
+
+        [JsonProperty("player")]
+        public string Player { get; set; }
+
+        [JsonProperty("flags")]
+        public int Flags { get; set; }
     }
 
     [HarmonyPatch(typeof(ItemPickup), "release")]
