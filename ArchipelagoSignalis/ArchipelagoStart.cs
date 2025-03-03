@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace ArchipelagoSignalis
 {
-    public class ArchipelagoStart : MelonMod {
+    public class ArchipelagoStart : MelonMod
+    {
 
         public override void OnInitializeMelon()
         {
@@ -56,6 +57,7 @@ namespace ArchipelagoSignalis
             {
                 elsterItems.Add(item.key._item.ToString());
             }
+
             foreach (AnItem item in InventoryManager.allItems.Values)
             {
                 if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
@@ -71,8 +73,9 @@ namespace ArchipelagoSignalis
                     }
                     else
                     {
-                    MelonLogger.Msg($"Adding item to inventory: {itemName}");
-                    InventoryManager.AddItem(item, 1);
+                        MelonLogger.Msg($"Adding item to inventory: {itemName}");
+                        InventoryManager.AddItem(item, 1);
+                    }
                 }
             }
         }
@@ -110,20 +113,15 @@ namespace ArchipelagoSignalis
             }
         }
     }
-
     public class ApiResponse
     {
-        [JsonProperty("item")]
-        public string Item { get; set; }
+        [JsonProperty("item")] public string Item { get; set; }
 
-        [JsonProperty("location")]
-        public int Location { get; set; }
+        [JsonProperty("location")] public int Location { get; set; }
 
-        [JsonProperty("player")]
-        public string Player { get; set; }
+        [JsonProperty("player")] public string Player { get; set; }
 
-        [JsonProperty("flags")]
-        public int Flags { get; set; }
+        [JsonProperty("flags")] public int Flags { get; set; }
     }
 
     [HarmonyPatch(typeof(ItemPickup), "release")]
