@@ -15,6 +15,7 @@ namespace ArchipelagoSignalis
         public override void OnUpdate()
         {
             OpenStorageBoxFromAnywhereListener();
+            GiveRadio();
         }
 
         private static void OpenStorageBoxFromAnywhereListener()
@@ -23,6 +24,15 @@ namespace ArchipelagoSignalis
             {
                 MelonLogger.Msg("F11 key pressed");
                 InventoryBase.OpenStorageBox();
+            }
+        }
+
+        private static void GiveRadio()
+        {
+            if (Input.GetKeyDown(KeyCode.F10))
+            {
+                MelonLogger.Msg("F10 key pressed");
+                RadioManager.moduleInstalled = !RadioManager.moduleInstalled;
             }
         }
 
@@ -43,6 +53,15 @@ namespace ArchipelagoSignalis
             MelonLogger.Msg($"Item picked up: {item._name} in room: {playerState.roomName}");
             // Here you can add your logic to send the item pickup to Archipelago
             // For example, using an HTTP request to the Archipelago server
+        }
+    }
+
+    [HarmonyPatch(typeof(RadioModuleAcquirer), "getRadioModule")]
+    public static class DetectRadioPickup
+    {
+        private static void Prefix()
+        {
+            MelonLogger.Msg("Picked up Radio");
         }
     }
 }
