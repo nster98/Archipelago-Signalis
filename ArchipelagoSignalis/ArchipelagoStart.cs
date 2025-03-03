@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Net.Http;
+using HarmonyLib;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace ArchipelagoSignalis
 {
@@ -16,29 +18,25 @@ namespace ArchipelagoSignalis
         {
             base.OnInitializeMelon();
             MelonLogger.Msg("ArchipelagoSignalis loaded");
-            FetchData().GetAwaiter().GetResult();
         }
 
-        private async Task FetchData()
+        public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    HttpResponseMessage response = await client.GetAsync("https://api.github.com/repos/dotnet/runtime");
-                    response.EnsureSuccessStatusCode();
-                    string responseBody = await response.Content.ReadAsStringAsync();
+            base.OnSceneWasLoaded(buildIndex, sceneName);
+            MelonLogger.Msg($"Scene loaded: {sceneName}");
+        }
+    }
 
-                    JObject json = JObject.Parse(responseBody);
-                    MelonLogger.Msg("Data fetched from GitHub API:");
-                    MelonLogger.Msg(json.ToString());
-                }
-                catch (HttpRequestException e)
-                {
-                    MelonLogger.Error($"Request error: {e.Message}");
-                }
-            }
-            
+    [HarmonyPatch(typeof(ItemPickup), "release")]
+    public static class DetectItemPickup
+    {
+        private static void Prefix(ItemPickup __instance)
+        {
+            var item = __instance._item;
+            var playerState = PlayerState.currentRoom;
+            MelonLogger.Msg($"Item picked up: {item._name} in room: {playerState.roomName}");
+            // Here you can add your logic to send the item pickup to Archipelago
+            // For example, using an HTTP request to the Archipelago server
         }
     }
 }
