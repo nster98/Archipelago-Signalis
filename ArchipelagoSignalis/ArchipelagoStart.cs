@@ -1,5 +1,4 @@
-﻿using MelonLoader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MelonLoader;
 using HarmonyLib;
@@ -74,8 +73,6 @@ namespace ArchipelagoSignalis
                     {
                     MelonLogger.Msg($"Adding item to inventory: {itemName}");
                     InventoryManager.AddItem(item, 1);
-                }
-
                 }
             }
         }
