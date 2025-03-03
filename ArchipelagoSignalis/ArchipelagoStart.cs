@@ -1,8 +1,11 @@
 ﻿using MelonLoader;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using MelonLoader;
+using HarmonyLib;
+using UnityEngine;
+using Newtonsoft.Json;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ArchipelagoSignalis
@@ -69,9 +72,9 @@ namespace ArchipelagoSignalis
                     }
                     else
                     {
-                        MelonLogger.Msg($"Adding item to inventory: {itemName}");
-                        InventoryManager.AddItem(item, 1);
-                    }
+                    MelonLogger.Msg($"Adding item to inventory: {itemName}");
+                    InventoryManager.AddItem(item, 1);
+                }
 
                 }
             }
@@ -142,6 +145,9 @@ namespace ArchipelagoSignalis
     [HarmonyPatch(typeof(RadioModuleAcquirer), "getRadioModule")]
     public static class DetectRadioPickup
     {
-        MelonLogger.Msg("Radio module acquired");
+        private static void Prefix()
+        {
+            MelonLogger.Msg("Picked up Radio");
+        }
     }
 }
