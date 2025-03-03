@@ -1,14 +1,6 @@
 ﻿using MelonLoader;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using System.Net.Http;
 using HarmonyLib;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+using UnityEngine;
 
 namespace ArchipelagoSignalis
 {
@@ -18,6 +10,20 @@ namespace ArchipelagoSignalis
         {
             base.OnInitializeMelon();
             MelonLogger.Msg("ArchipelagoSignalis loaded");
+        }
+
+        public override void OnUpdate()
+        {
+            OpenStorageBoxFromAnywhereListener();
+        }
+
+        private static void OpenStorageBoxFromAnywhereListener()
+        {
+            if (Input.GetKeyDown(KeyCode.F11))
+            {
+                MelonLogger.Msg("F11 key pressed");
+                InventoryBase.OpenStorageBox();
+            }
         }
 
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
