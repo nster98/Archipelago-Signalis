@@ -50,6 +50,7 @@ namespace ArchipelagoSignalis
         }
 
         // Add item to inventory or box, depending on current inventory count
+        // TODO: Add only when not in inventory to prevent crashing?
         private static void AddItemToInventory(string itemName)
         {
             List<string> elsterItems = new List<string>();
@@ -127,13 +128,29 @@ namespace ArchipelagoSignalis
     [HarmonyPatch(typeof(ItemPickup), "release")]
     public static class DetectItemPickup
     {
+        private static int numItemsInInventory = 0;
         private static void Prefix(ItemPickup __instance)
         {
+            numItemsInInventory = InventoryManager.elsterItems.Count;
             var item = __instance._item;
             var playerState = PlayerState.currentRoom;
             MelonLogger.Msg($"Item picked up: {item._name} in room: {playerState.roomName}");
-            // Here you can add your logic to send the item pickup to Archipelago
-            // For example, using an HTTP request to the Archipelago server
+        }
+        private static void Postfix(ItemPickup __instance)
+        {
+            var currentNumItemsInInventory = InventoryManager.elsterItems.Count;
+            if (currentNumItemsInInventory != numItemsInInventory)
+            {
+                if (string.Equals(__instance._item._item.ToString(), "FalkeSpear", StringComparison.OrdinalIgnoreCase))
+                {
+                    return;
+                }
+                MelonLogger.Msg($"Removed item {__instance._item.name} from inventory");
+                var item = __instance._item;
+                InventoryManager.RemoveItem(item);
+                //TODO: Call Archipelago API for check
+            }
+            
         }
     }
 
@@ -143,6 +160,15 @@ namespace ArchipelagoSignalis
         private static void Prefix()
         {
             MelonLogger.Msg("Picked up Radio");
+        }
+    }
+
+    [HarmonyPatch(typeof(END_Manager), "EvaluateEnding")]
+    public static class DetectEnding
+    {
+        private static void Prefix()
+        {
+            MelonLogger.Msg("Ending triggered");
         }
     }
 }
