@@ -26,17 +26,19 @@ namespace ArchipelagoSignalis
             private static void Postfix(ItemPickup __instance)
             {
                 var currentNumItemsInInventory = InventoryManager.elsterItems.Count;
+                var item = __instance._item;
                 if (currentNumItemsInInventory != numItemsInInventory)
                 {
-                    if (string.Equals(__instance._item._item.ToString(), "FalkeSpear", StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(item._item.ToString(), "FalkeSpear", StringComparison.OrdinalIgnoreCase))
                     {
                         return;
                     }
 
-                    MelonLogger.Msg($"Removed item {__instance._item.name} from inventory");
-                    var item = __instance._item;
+                    MelonLogger.Msg($"Removed item {item._item} from inventory");
                     InventoryManager.RemoveItem(item);
                     //TODO: Call Archipelago API for check
+
+                    SaveManagement.UpdateItemsCollected(item._item.ToString());
                 }
 
             }

@@ -34,6 +34,7 @@ namespace ArchipelagoSignalis
             MelonLogger.Msg($"Scene loaded: {sceneName} build index {buildIndex}");
 
             LevelSelect.FillInLevelSelect(sceneName);
+            LevelSelect.EnteredNewLevel(sceneName);
         }
     }
 }

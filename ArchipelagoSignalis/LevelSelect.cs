@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HarmonyLib;
 using MelonLoader;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,9 @@ namespace ArchipelagoSignalis
 {
     class LevelSelect : MelonMod
     {
-        private static List<string> intruderLevelNames = ["END", "PEN", "EXC", "MED", "ROT", "MEM", "LAB", "DET", "BIO", "RES", "LOV"];
+        private static List<string> intruderLevelNames = ["PEN", "LOV", "DET", "MED", "RES", "EXC", "LAB", "MEM", "BIO", "ROT", "END"];
+        private static bool isDebug = false;
+        public static bool isInventoryOpen = false;
 
         //TODO: Don't allow level select press when in inventory, will crash the game
         public static void OpenIntruderLevelSelect()
@@ -19,9 +22,22 @@ namespace ArchipelagoSignalis
             if (Input.GetKeyDown(KeyCode.F8))
             {
                 MelonLogger.Msg("F8 key pressed");
+                if (!isInventoryOpen)
+                {
+                    MelonLogger.Msg("Inventory not open");
+                    SceneHelper sceneHelper = new SceneHelper();
+                    sceneHelper.LoadSceneDirect("scenes_");
+                }
+            }
+        }
 
-                SceneHelper sceneHelper = new SceneHelper();
-                sceneHelper.LoadSceneDirect("scenes_");
+        public static void EnteredNewLevel(string sceneName)
+        {
+            var appendedSceneName = sceneName.Substring(0, 3);
+            MelonLogger.Msg($"Appended scene name: {appendedSceneName}");
+            if (intruderLevelNames.Contains(appendedSceneName))
+            {
+                SaveManagement.UpdateLevelsReached(appendedSceneName);
             }
         }
 
@@ -35,13 +51,40 @@ namespace ArchipelagoSignalis
                 {
                     if (gameObject.activeInHierarchy && intruderLevelNames.Contains(gameObject.name))
                     {
-                        if (gameObject.name == "LOV")
+                        if (!isDebug)
                         {
-                            gameObject.SetActive(false);
+                            string levelsReached = SaveManagement.LevelsReached;
+                            if (levelsReached.Contains(gameObject.name))
+                            {
+                                gameObject.SetActive(true);
+                            }
+                            else
+                            {
+                                gameObject.SetActive(false);
+                            }
+
+                            if (gameObject.name == "TEST")
+                            {
+                                gameObject.SetActive(false);
+                            }
                         }
+                        // if (gameObject.name == "LOV")
+                        // {
+                        //     // gameObject.SetActive(false);
+                        // }
                     }
                 }
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(InventoryBase), "ToggleInventory")]
+    public static class DetectInventoryOpen
+    {
+        private static void Postfix()
+        {
+            MelonLogger.Msg("Inventory toggled");
+            LevelSelect.isInventoryOpen = !LevelSelect.isInventoryOpen;
         }
     }
 }

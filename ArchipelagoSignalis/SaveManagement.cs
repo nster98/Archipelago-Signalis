@@ -10,7 +10,34 @@ namespace ArchipelagoSignalis
 {
     class SaveManagement : MelonMod
     {
+        public static string LevelsReached = "";
+        public static string ItemsCollected = "";
 
+        public static void UpdateItemsCollected(string itemName)
+        {
+            if (ItemsCollected == "")
+            {
+                ItemsCollected = itemName;
+            }
+            else
+            {
+                ItemsCollected += "," + itemName;
+            }
+            MelonLogger.Msg($"Items collected: {ItemsCollected}");
+        }
+
+        public static void UpdateLevelsReached(string levelName)
+        {
+            if (LevelsReached == "")
+            {
+                LevelsReached = levelName;
+            }
+            else if (!LevelsReached.Contains(levelName))
+            {
+                LevelsReached += "," + levelName;
+            }
+            MelonLogger.Msg($"Levels reached: {LevelsReached}");
+        }
     }
 
     [HarmonyPatch(typeof(SaveManager), "Save")]
@@ -19,7 +46,9 @@ namespace ArchipelagoSignalis
         private static void Prefix()
         {
             MelonLogger.Msg("Saving game");
-            SProgress.SetString("archipelagoData1", "Item1");
+            
+            SProgress.SetString("ItemsCollected", SaveManagement.ItemsCollected);
+            SProgress.SetString("LevelsReached", SaveManagement.LevelsReached);
         }
     }
 
@@ -29,7 +58,12 @@ namespace ArchipelagoSignalis
         private static void Postfix()
         {
             MelonLogger.Msg("Loading save");
-            MelonLogger.Msg(SProgress.GetString("archipelagoData1", ""));
+
+            SaveManagement.ItemsCollected = SProgress.GetString("ItemsCollected", "");
+            SaveManagement.LevelsReached = SProgress.GetString("LevelsReached", "");
+
+            MelonLogger.Msg($"Loading game :: Items collected: {SaveManagement.ItemsCollected}");
+            MelonLogger.Msg($"Loading game :: Levels reached: {SaveManagement.LevelsReached}");
         }
     }
 }
