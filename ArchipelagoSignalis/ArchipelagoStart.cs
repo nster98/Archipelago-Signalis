@@ -11,6 +11,8 @@ using Newtonsoft.Json.Linq;
 
 namespace ArchipelagoSignalis
 {
+
+    
     public class ArchipelagoStart : MelonMod
     {
 
@@ -28,6 +30,11 @@ namespace ArchipelagoSignalis
             RetrieveItem.GiveRadio();
         }
 
+        public override void OnGUI()
+        {
+            ArchipelagoUI.RenderArchipelagoSettingsUi();
+        }
+
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
             base.OnSceneWasLoaded(buildIndex, sceneName);
@@ -37,4 +44,6 @@ namespace ArchipelagoSignalis
             LevelSelect.EnteredNewLevel(sceneName);
         }
     }
+
+    
 }

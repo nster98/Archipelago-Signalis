@@ -20,7 +20,7 @@ namespace ArchipelagoSignalis
                 numItemsInInventory = InventoryManager.elsterItems.Count;
                 var item = __instance._item;
                 var playerState = PlayerState.currentRoom;
-                MelonLogger.Msg($"Item picked up: {item._name} in room: {playerState.roomName}");
+                MelonLogger.Msg($"Item picked up: {item._item} in room: {playerState.roomName}");
             }
 
             private static void Postfix(ItemPickup __instance)
@@ -36,9 +36,20 @@ namespace ArchipelagoSignalis
 
                     MelonLogger.Msg($"Removed item {item._item} from inventory");
                     InventoryManager.RemoveItem(item);
-                    //TODO: Call Archipelago API for check
 
-                    SaveManagement.UpdateItemsCollected(item._item.ToString());
+                    var fullItemName = item._item.ToString();
+                    var playerState = PlayerState.currentRoom;
+                    if (fullItemName.Contains("Ammo") || fullItemName.Contains("Health") || fullItemName.Contains("Injector"))
+                    {
+                        fullItemName += "_" + playerState.roomName;
+                    }
+
+                    SaveManagement.UpdateItemsCollected(fullItemName);
+
+                    // PlayerState.settings.debugFeatures = true;
+                    // FileBasedPrefs.SetBool("Lockout", true);
+                    // Cheats.cheat("This is a test message");
+                    //TODO: Call Archipelago API for check
                 }
 
             }

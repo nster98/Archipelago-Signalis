@@ -72,6 +72,10 @@
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>E:\SteamLibrary\steamapps\common\SIGNALIS\MelonLoader\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\SteamLibrary\steamapps\common\SIGNALIS\MelonLoader\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\SteamLibrary\steamapps\common\SIGNALIS\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
@@ -83,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchipelagoStart.cs" />
+    <Compile Include="ArchipelagoUI.cs" />
     <Compile Include="GameCompletion.cs" />
     <Compile Include="LevelSelect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

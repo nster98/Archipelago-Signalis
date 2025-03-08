@@ -12,7 +12,7 @@ namespace ArchipelagoSignalis
 {
     class LevelSelect : MelonMod
     {
-        private static List<string> intruderLevelNames = ["PEN", "LOV", "DET", "MED", "RES", "EXC", "LAB", "MEM", "BIO", "ROT", "END"];
+        private static List<string> intruderLevelNames = ["PEN", "LOV", "DET", "MED", "RES", "EXC", "LAB", "MEM", "BIO", "ROT", "END", "TEST"];
         private static bool isDebug = false;
         public static bool isInventoryOpen = false;
 
@@ -63,15 +63,11 @@ namespace ArchipelagoSignalis
                                 gameObject.SetActive(false);
                             }
 
-                            if (gameObject.name == "TEST")
+                            if (gameObject.name.Contains("TEST"))
                             {
                                 gameObject.SetActive(false);
                             }
                         }
-                        // if (gameObject.name == "LOV")
-                        // {
-                        //     // gameObject.SetActive(false);
-                        // }
                     }
                 }
             }
