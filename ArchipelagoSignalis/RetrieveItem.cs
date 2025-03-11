@@ -47,7 +47,7 @@ namespace ArchipelagoSignalis
 
         // Add item to inventory or box, depending on current inventory count
         // TODO: Add only when not in inventory to prevent crashing?
-        private static void AddItemToInventory(string itemName)
+        public static void AddItemToInventory(string itemName)
         {
             List<string> elsterItems = new List<string>();
             foreach (var item in InventoryManager.elsterItems)

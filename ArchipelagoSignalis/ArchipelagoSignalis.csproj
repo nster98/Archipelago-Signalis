@@ -86,8 +86,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchipelagoHelper.cs" />
     <Compile Include="ArchipelagoStart.cs" />
     <Compile Include="ArchipelagoUI.cs" />
+    <Compile Include="DeathLink.cs" />
     <Compile Include="GameCompletion.cs" />
     <Compile Include="LevelSelect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

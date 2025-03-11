@@ -13,10 +13,9 @@ namespace ArchipelagoSignalis
     class LevelSelect : MelonMod
     {
         private static List<string> intruderLevelNames = ["PEN", "LOV", "DET", "MED", "RES", "EXC", "LAB", "MEM", "BIO", "ROT", "END", "TEST"];
-        private static bool isDebug = false;
+        private static bool isDebug = true;
         public static bool isInventoryOpen = false;
 
-        //TODO: Don't allow level select press when in inventory, will crash the game
         public static void OpenIntruderLevelSelect()
         {
             if (Input.GetKeyDown(KeyCode.F8))
@@ -39,13 +38,25 @@ namespace ArchipelagoSignalis
             {
                 SaveManagement.UpdateLevelsReached(appendedSceneName);
             }
+
+            GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            foreach (GameObject gameObject in objects)
+            {
+                if (gameObject.activeInHierarchy && null != gameObject.GetComponentByName("Room"))
+                {
+                    MelonLogger.Msg($"Scene : {sceneName} : {gameObject.name}");
+                }
+            }
         }
 
         public static void FillInLevelSelect(string sceneName)
         {
+            if (sceneName == "EndCredits")
+            {
+                GameCompletion.DetectSecretEnding();
+            }
             if (sceneName == "scenes_")
             {
-                Scene intruderScene = SceneManager.GetActiveScene();
                 GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
                 foreach (GameObject gameObject in objects)
                 {

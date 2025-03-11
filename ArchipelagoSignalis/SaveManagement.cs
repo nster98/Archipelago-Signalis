@@ -64,6 +64,12 @@ namespace ArchipelagoSignalis
 
             MelonLogger.Msg($"Loading game :: Items collected: {SaveManagement.ItemsCollected}");
             MelonLogger.Msg($"Loading game :: Levels reached: {SaveManagement.LevelsReached}");
+
+            // ArchipelagoStart.InitializeArchipelago();
+
+            RetrieveItem.AddItemToInventory("KeyOfLove");
+            RetrieveItem.AddItemToInventory("KeyOfSacrifice");
+            RetrieveItem.AddItemToInventory("KeyOfEternity");
         }
     }
 }

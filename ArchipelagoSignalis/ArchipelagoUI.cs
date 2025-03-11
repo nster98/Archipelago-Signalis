@@ -11,7 +11,6 @@ namespace ArchipelagoSignalis
     class ArchipelagoUI
     {
         public static bool InSettingsMenu = false;
-        private static string _slotName = "", _server = "", _port = "", _password = "";
         private static bool _isEditing = false;
 
         public static void RenderArchipelagoSettingsUi()
@@ -25,25 +24,25 @@ namespace ArchipelagoSignalis
                 // Create an area for slot name
                 GUILayout.BeginHorizontal(null);
                 GUILayout.Label("Slot Name", null);
-                _slotName = GUILayout.TextField(_slotName, 50, null);
+                ArchipelagoStart.SlotName = GUILayout.TextField(ArchipelagoStart.SlotName, 50, null);
                 GUILayout.EndHorizontal();
 
                 // Create an area for server name
                 GUILayout.BeginHorizontal(null);
                 GUILayout.Label("Server", null);
-                _server = GUILayout.TextField(_server, 50, null);
+                ArchipelagoStart.Server = GUILayout.TextField(ArchipelagoStart.Server, 50, null);
                 GUILayout.EndHorizontal();
 
                 // Create an area for port number
                 GUILayout.BeginHorizontal(null);
                 GUILayout.Label("Port", null);
-                _port = GUILayout.TextField(_port, 50, null);
+                ArchipelagoStart.Port = GUILayout.TextField(ArchipelagoStart.Port, 50, null);
                 GUILayout.EndHorizontal();
 
                 // Create an area for password
                 GUILayout.BeginHorizontal(null);
                 GUILayout.Label("Password", null);
-                _password = GUILayout.TextField(_password, 50, null);
+                ArchipelagoStart.Password = GUILayout.TextField(ArchipelagoStart.Password, 50, null);
                 GUILayout.EndHorizontal();
 
                 GUILayout.BeginHorizontal(null);
