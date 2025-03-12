@@ -24,25 +24,25 @@ namespace ArchipelagoSignalis
                 // Create an area for slot name
                 GUILayout.BeginHorizontal(null);
                 GUILayout.Label("Slot Name", null);
-                ArchipelagoStart.SlotName = GUILayout.TextField(ArchipelagoStart.SlotName, 50, null);
+                ArchipelagoHelper.SlotName = GUILayout.TextField(ArchipelagoHelper.SlotName, 50, null);
                 GUILayout.EndHorizontal();
 
                 // Create an area for server name
                 GUILayout.BeginHorizontal(null);
                 GUILayout.Label("Server", null);
-                ArchipelagoStart.Server = GUILayout.TextField(ArchipelagoStart.Server, 50, null);
+                ArchipelagoHelper.Server = GUILayout.TextField(ArchipelagoHelper.Server, 50, null);
                 GUILayout.EndHorizontal();
 
                 // Create an area for port number
                 GUILayout.BeginHorizontal(null);
                 GUILayout.Label("Port", null);
-                ArchipelagoStart.Port = GUILayout.TextField(ArchipelagoStart.Port, 50, null);
+                ArchipelagoHelper.Port = GUILayout.TextField(ArchipelagoHelper.Port, 50, null);
                 GUILayout.EndHorizontal();
 
                 // Create an area for password
                 GUILayout.BeginHorizontal(null);
                 GUILayout.Label("Password", null);
-                ArchipelagoStart.Password = GUILayout.TextField(ArchipelagoStart.Password, 50, null);
+                ArchipelagoHelper.Password = GUILayout.TextField(ArchipelagoHelper.Password, 50, null);
                 GUILayout.EndHorizontal();
 
                 GUILayout.BeginHorizontal(null);
