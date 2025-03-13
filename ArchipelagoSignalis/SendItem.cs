@@ -20,6 +20,13 @@ namespace ArchipelagoSignalis
                 numItemsInInventory = InventoryManager.elsterItems.Count;
                 var item = __instance._item;
                 var playerState = PlayerState.currentRoom;
+
+                // Infinite pickups in Mynah Arena to avoid softlock
+                if (playerState.roomName == "Surgery Mynah")
+                {
+                    __instance.dontDestroyOnPickup = true;
+                }
+
                 MelonLogger.Msg($"Item picked up: {item._item} in room: {playerState.roomName}");
             }
 
@@ -30,6 +37,10 @@ namespace ArchipelagoSignalis
                 if (currentNumItemsInInventory != numItemsInInventory)
                 {
                     if (string.Equals(item._item.ToString(), "FalkeSpear", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return;
+                    }
+                    if (PlayerState.currentRoom.roomName == "Surgery Mynah")
                     {
                         return;
                     }
