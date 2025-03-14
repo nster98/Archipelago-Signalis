@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.Models;
 using MelonLoader;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -55,6 +57,8 @@ namespace ArchipelagoSignalis
                 elsterItems.Add(item.key._item.ToString());
             }
 
+            itemName = ParseMultipleItemName(itemName);
+
             foreach (AnItem item in InventoryManager.allItems.Values)
             {
                 if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
@@ -84,6 +88,45 @@ namespace ArchipelagoSignalis
                 MelonLogger.Msg("F10 key pressed");
                 RadioManager.moduleInstalled = !RadioManager.moduleInstalled;
             }
+        }
+
+        public static void ListenForItemReceived(ArchipelagoSession session)
+        {
+            session.Items.ItemReceived += (receivedItemHelper) =>
+            {
+                ItemInfo item = session.Items.DequeueItem();
+                if (item != null)
+                {
+                    MelonLogger.Msg($"Received item: {item.ItemName}");
+                    AddItemToInventory(item.ItemName);
+                    SaveManagement.UpdateItemsReceived(item.ItemName);
+                }
+            };
+        }
+
+        public static string ParseMultipleItemName(string itemName)
+        {
+            if (itemName.Contains("Ammo"))
+            {
+                if (itemName.Contains("FlakGun")) return "FlakGunAmmo";
+                if (itemName.Contains("FlareGun")) return "FlareGunAmmo";
+                if (itemName.Contains("Pistol")) return "PistolAmmo";
+                if (itemName.Contains("Revolver")) return "RevolverAmmo";
+                if (itemName.Contains("Rifle")) return "RifleAmmo";
+                if (itemName.Contains("Shotgun")) return "ShotgunAmmo";
+                if (itemName.Contains("Smg")) return "SmgAmmo";
+            } else if (itemName.Contains("Health"))
+            {
+                if (itemName.Contains("25")) return "Health25";
+                if (itemName.Contains("50")) return "Health50";
+                if (itemName.Contains("100")) return "Health100";
+                if (itemName.Contains("Fast")) return "HealthFast";
+            } else if (itemName.Contains("Injector"))
+            {
+                return "Injector";
+            }
+
+            return itemName;
         }
     }
 

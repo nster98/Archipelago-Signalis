@@ -12,6 +12,7 @@ namespace ArchipelagoSignalis
     {
         public static string LevelsReached = "";
         public static string ItemsCollected = "";
+        public static string ItemsReceived = "";
 
         public static void UpdateItemsCollected(string itemName)
         {
@@ -24,6 +25,19 @@ namespace ArchipelagoSignalis
                 ItemsCollected += "," + itemName;
             }
             MelonLogger.Msg($"Items collected: {ItemsCollected}");
+        }
+
+        public static void UpdateItemsReceived(string itemName)
+        {
+            if (ItemsCollected == "")
+            {
+                ItemsCollected = itemName;
+            }
+            else
+            {
+                ItemsCollected += "," + itemName;
+            }
+            MelonLogger.Msg($"Items received: {ItemsCollected}");
         }
 
         public static void UpdateLevelsReached(string levelName)
@@ -48,6 +62,7 @@ namespace ArchipelagoSignalis
             MelonLogger.Msg("Saving game");
             
             SProgress.SetString("ItemsCollected", SaveManagement.ItemsCollected);
+            SProgress.SetString("ItemsReceived", SaveManagement.ItemsReceived);
             SProgress.SetString("LevelsReached", SaveManagement.LevelsReached);
         }
     }
@@ -60,6 +75,7 @@ namespace ArchipelagoSignalis
             MelonLogger.Msg("Loading save");
 
             SaveManagement.ItemsCollected = SProgress.GetString("ItemsCollected", "");
+            SaveManagement.ItemsReceived = SProgress.GetString("ItemsReceived", "");
             SaveManagement.LevelsReached = SProgress.GetString("LevelsReached", "");
 
             MelonLogger.Msg($"Loading game :: Items collected: {SaveManagement.ItemsCollected}");

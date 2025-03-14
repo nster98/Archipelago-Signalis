@@ -59,16 +59,48 @@ namespace ArchipelagoSignalis
             if (loginResultTask.Result.Successful)
             {
                 MelonLogger.Msg($"Connected to {Server + ":" + Port} as {SlotName}");
-                ProcessItemsAfterLogin(Session);
-
+                RetrieveItemsAfterLogin(Session);
+                SendItemsAfterLogin(Session);
+                RetrieveItem.ListenForItemReceived(Session);
+            }
+            else
+            {
+                Session = null;
             }
         }
-        public static void ProcessItemsAfterLogin(ArchipelagoSession session)
+
+        public static void SendItemsAfterLogin(ArchipelagoSession session)
         {
-            foreach (ItemInfo item in session.Items.AllItemsReceived)
+            // TODO: Test if this works, may need to be async
+            var lastItemSent = session.DataStorage["LastItemSent"];
+            var itemsCollected = SaveManagement.ItemsCollected.Split(',').ToList();
+            int itemIndex = itemsCollected.IndexOf(lastItemSent);
+
+            if (itemIndex != -1 && itemIndex < itemsCollected.Count - 1)
             {
-                // TODO: Only send items after last recieved item retrieved from Save Data
-                RetrieveItem.AddItemToInventory(item.ItemName);
+                var itemsToSend = itemsCollected.Skip(itemIndex + 1).ToList();
+                foreach (var itemToSend in itemsToSend)
+                {
+                    MelonLogger.Msg($"Sending item {itemToSend} to Archipelago");
+                    SendItem.SendCheckToArchipelago(itemToSend);
+                }
+            }
+            
+        }
+
+        public static void RetrieveItemsAfterLogin(ArchipelagoSession session)
+        {
+            int archipelagoItemsSize = session.Items.AllItemsReceived.Count;
+            int gameItemsSize = SaveManagement.ItemsReceived.Split(',').Length;
+
+            if (archipelagoItemsSize > gameItemsSize)
+            {
+                MelonLogger.Msg($"Retrieving {archipelagoItemsSize - gameItemsSize} items from Archipelago");
+                List<ItemInfo> itemsToReceive = session.Items.AllItemsReceived.Skip(gameItemsSize).ToList();
+                foreach (ItemInfo item in itemsToReceive)
+                {
+                    RetrieveItem.AddItemToInventory(item.ItemName);
+                }
             }
         }
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Packets;
 using HarmonyLib;
 using MelonLoader;
 using UnityEngine;
@@ -14,6 +16,14 @@ namespace ArchipelagoSignalis
         public static void DetectSecretEnding()
         {
             MelonLogger.Msg("Secret ending triggered");
+            SendCompletionToArchipelago();
+        }
+
+        public static void SendCompletionToArchipelago()
+        {
+            var statusUpdatePacket = new StatusUpdatePacket();
+            statusUpdatePacket.Status = ArchipelagoClientState.ClientGoal;
+            ArchipelagoHelper.Session.Socket.SendPacket(statusUpdatePacket);
         }
     }
 
@@ -23,25 +33,7 @@ namespace ArchipelagoSignalis
         private static void Prefix()
         {
             MelonLogger.Msg("Ending triggered");
+            GameCompletion.SendCompletionToArchipelago();
         }
     }
-
-    // [HarmonyPatch(typeof(CutsceneManager), "StartCutscene")]
-    // public static class DetectSecretEnding
-    // {
-    //     private static void Prefix(CutsceneManager __instance)
-    //     {
-    //         GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-    //         foreach (var gameObject in objects)
-    //         {
-    //             if (gameObject.activeInHierarchy && gameObject.name == "END_Grave_1 Typo")
-    //             {
-    //                 if (gameObject.)
-    //                 {
-    //                     MelonLogger.Msg("Secret ending triggered");
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
 }

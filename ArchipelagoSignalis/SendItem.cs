@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Archipelago.MultiClient.Net.Enums;
 using HarmonyLib;
 using MelonLoader;
 
@@ -10,6 +11,20 @@ namespace ArchipelagoSignalis
 {
     class SendItem : MelonMod
     {
+        public static void SendCheckToArchipelago(string itemName)
+        {
+            if (null != ArchipelagoHelper.Session)
+            {
+                MelonLogger.Msg($"Sending item {itemName} to Archipelago");
+                long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, itemName);
+                ArchipelagoHelper.Session.Locations.CompleteLocationChecks(locationId);
+            }
+            else
+            {
+                MelonLogger.Msg("Archipelago session is null, not sending item");
+            }
+        }
+        
         [HarmonyPatch(typeof(ItemPickup), "release")]
         public static class DetectItemPickup
         {
@@ -57,10 +72,9 @@ namespace ArchipelagoSignalis
 
                     SaveManagement.UpdateItemsCollected(fullItemName);
 
-                    // PlayerState.settings.debugFeatures = true;
-                    // FileBasedPrefs.SetBool("Lockout", true);
-                    // Cheats.cheat("This is a test message");
                     //TODO: Call Archipelago API for check
+                    SendCheckToArchipelago(fullItemName);
+                    ArchipelagoHelper.Session.DataStorage[Scope.Slot, "LastItemSent"] = fullItemName;
                 }
 
             }
