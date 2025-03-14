@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Packets;
@@ -20,6 +21,7 @@ namespace ArchipelagoSignalis
         public const string GameName = "Signalis";
 
         public static ArchipelagoSession Session;
+        public static DeathLinkService DeathLinkService;
 
         public static void InitializeArchipelago()
         {
@@ -62,6 +64,20 @@ namespace ArchipelagoSignalis
                 RetrieveItemsAfterLogin(Session);
                 SendItemsAfterLogin(Session);
                 RetrieveItem.ListenForItemReceived(Session);
+                
+                var isDeathLinkEnabled = Session.ConnectionInfo.Tags.Contains("DeathLink");
+                if (isDeathLinkEnabled)
+                {
+                    Session.CreateDeathLinkService().EnableDeathLink();
+                    DeathLinkService = Session.CreateDeathLinkService();
+
+                    DeathLinkService.OnDeathLinkReceived += (deathLinkObject) =>
+                    {
+                        MelonLogger.Msg($"Player {deathLinkObject.Source} has died.");
+                        DeathLink.KillElster();
+                    };
+
+                }
             }
             else
             {

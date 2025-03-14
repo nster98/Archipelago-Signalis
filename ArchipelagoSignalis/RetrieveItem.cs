@@ -51,17 +51,24 @@ namespace ArchipelagoSignalis
         // TODO: Add only when not in inventory to prevent crashing?
         public static void AddItemToInventory(string itemName)
         {
+            if (itemName.Contains("Radio Module"))
+            {
+                GiveRadio();
+                SaveManagement.UpdateItemsReceived(itemName);
+                return;
+            }
+            
             List<string> elsterItems = new List<string>();
             foreach (var item in InventoryManager.elsterItems)
             {
                 elsterItems.Add(item.key._item.ToString());
             }
 
-            itemName = ParseMultipleItemName(itemName);
+            var itemNameToAdd = ParseMultipleItemName(itemName);
 
             foreach (AnItem item in InventoryManager.allItems.Values)
             {
-                if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(itemNameToAdd, item.name, StringComparison.OrdinalIgnoreCase))
                 {
                     var itemCount = InventoryManager.elsterItems.Count;
                     if (elsterItems.Contains("PhotoModule")) itemCount--;
@@ -69,25 +76,26 @@ namespace ArchipelagoSignalis
 
                     if (itemCount > 6)
                     {
-                        MelonLogger.Msg($"Adding item to box: {itemName}");
+                        MelonLogger.Msg($"Adding item to box: {itemNameToAdd}");
                         InventoryManager.boxItem(item, 1);
                     }
                     else
                     {
-                        MelonLogger.Msg($"Adding item to inventory: {itemName}");
+                        MelonLogger.Msg($"Adding item to inventory: {itemNameToAdd}");
                         InventoryManager.AddItem(item, 1);
                     }
                 }
             }
+            SaveManagement.UpdateItemsReceived(itemName);
         }
 
         public static void GiveRadio()
         {
-            if (Input.GetKeyDown(KeyCode.F10))
-            {
-                MelonLogger.Msg("F10 key pressed");
-                RadioManager.moduleInstalled = !RadioManager.moduleInstalled;
-            }
+            // if (Input.GetKeyDown(KeyCode.F10))
+            // {
+                // MelonLogger.Msg("F10 key pressed");
+                RadioManager.moduleInstalled = true;
+            // }
         }
 
         public static void ListenForItemReceived(ArchipelagoSession session)

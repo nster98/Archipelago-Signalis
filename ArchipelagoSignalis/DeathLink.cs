@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using HarmonyLib;
 using MelonLoader;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace ArchipelagoSignalis
             if (PlayerState.gameOver && sendDeathLinkOnce)
             {
                 MelonLogger.Msg("Sending Death Link");
+                ArchipelagoHelper.DeathLinkService.SendDeathLink(new Archipelago.MultiClient.Net.BounceFeatures.DeathLink.DeathLink(ArchipelagoHelper.SlotName, "Elster died"));
                 sendDeathLinkOnce = false;
             }
 
@@ -25,16 +27,26 @@ namespace ArchipelagoSignalis
                 sendDeathLinkOnce = true;
             }
             
-            if (Input.GetKeyDown(KeyCode.F3))
-            {
-                MelonLogger.Msg("Received Death Link");
-                PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-                PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-                PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-                PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-                PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-            }
+            // if (Input.GetKeyDown(KeyCode.F3))
+            // {
+            //     MelonLogger.Msg("Received Death Link");
+            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            // }
             
+        }
+
+        public static void KillElster()
+        {
+            MelonLogger.Msg("Received Death Link");
+            PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
+            PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
         }
     }
 }

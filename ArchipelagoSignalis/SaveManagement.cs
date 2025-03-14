@@ -83,9 +83,9 @@ namespace ArchipelagoSignalis
 
             Task.Run(ArchipelagoHelper.InitializeArchipelago);
 
-            RetrieveItem.AddItemToInventory("KeyOfLove");
-            RetrieveItem.AddItemToInventory("KeyOfSacrifice");
-            RetrieveItem.AddItemToInventory("KeyOfEternity");
+            // RetrieveItem.AddItemToInventory("KeyOfLove");
+            // RetrieveItem.AddItemToInventory("KeyOfSacrifice");
+            // RetrieveItem.AddItemToInventory("KeyOfEternity");
         }
     }
 }
