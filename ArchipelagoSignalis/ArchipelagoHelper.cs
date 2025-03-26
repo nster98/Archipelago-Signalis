@@ -14,9 +14,9 @@ namespace ArchipelagoSignalis
 {
     class ArchipelagoHelper
     {
-        public static string SlotName = "NathanSIG";
-        public static string Server = "archipelago.gg";
-        public static string Port = "37509";
+        public static string SlotName = "Signalis";
+        public static string Server = "localhost";
+        public static string Port = "38281";
         public static string Password = "";
         public const string GameName = "Signalis";
 
@@ -29,12 +29,16 @@ namespace ArchipelagoSignalis
             Task<LoginResult> loginResultTask = null;
             try
             {
+                MelonLogger.Msg("Attempting to Connect");
                 Task<RoomInfoPacket> connection = Session.ConnectAsync();
                 connection.Wait();
 
+                MelonLogger.Msg("Attempting to Login");
                 loginResultTask = Session.LoginAsync(GameName, SlotName, ItemsHandlingFlags.AllItems,
                     password: Password);
                 loginResultTask.Wait();
+
+                MelonLogger.Msg("Logged In!");
 
             }
             catch (Exception ex)
@@ -117,6 +121,15 @@ namespace ArchipelagoSignalis
                 {
                     RetrieveItem.AddItemToInventory(item.ItemName);
                 }
+            }
+        }
+
+        public static void ConnectToArchipelagoOnBeginAnew(string sceneName)
+        {
+            if (sceneName == "PEN_Wreck" && null == Session)
+            {
+                MelonLogger.Msg("Connecting to Archipelago on Begin Anew");
+                Task.Run(InitializeArchipelago);
             }
         }
     }

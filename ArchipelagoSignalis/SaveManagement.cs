@@ -52,6 +52,16 @@ namespace ArchipelagoSignalis
             }
             MelonLogger.Msg($"Levels reached: {LevelsReached}");
         }
+
+        public static void SaveFirstTimeLoad()
+        {
+            SProgress.SetBool("PEN_WRECK_LOADED", true);
+        }
+
+        public static bool CheckFirstTimeLoad()
+        {
+            return SProgress.GetBool("PEN_WRECK_LOADED", false);
+        }
     }
 
     [HarmonyPatch(typeof(SaveManager), "Save")]

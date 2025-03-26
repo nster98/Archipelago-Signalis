@@ -91,6 +91,7 @@
     <Compile Include="ArchipelagoUI.cs" />
     <Compile Include="DeathLink.cs" />
     <Compile Include="GameCompletion.cs" />
+    <Compile Include="ItemMapping.cs" />
     <Compile Include="LevelSelect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualityOfLife.cs" />
@@ -100,7 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <EmbeddedResource Include="resource_files\signalis_location_mapping.csv" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="Deploy" AfterTargets="Build">
     <ItemGroup>

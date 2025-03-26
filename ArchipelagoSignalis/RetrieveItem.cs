@@ -102,11 +102,11 @@ namespace ArchipelagoSignalis
         {
             session.Items.ItemReceived += (receivedItemHelper) =>
             {
-                ItemInfo item = session.Items.DequeueItem();
+                ItemInfo item = receivedItemHelper.DequeueItem();
                 if (item != null)
                 {
                     MelonLogger.Msg($"Received item: {item.ItemName}");
-                    AddItemToInventory(item.ItemName);
+                    AddItemToInventory(ArchipelagoStart.GetSignalisItemName(item.ItemName));
                     SaveManagement.UpdateItemsReceived(item.ItemName);
                 }
             };

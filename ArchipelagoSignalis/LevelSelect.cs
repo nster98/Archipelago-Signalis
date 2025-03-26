@@ -15,6 +15,7 @@ namespace ArchipelagoSignalis
         private static List<string> intruderLevelNames = ["PEN", "LOV", "DET", "MED", "RES", "EXC", "LAB", "MEM", "BIO", "ROT", "END", "TEST"];
         private static bool isDebug = true;
         public static bool isInventoryOpen = false;
+        public static string currentScene = "";
 
         public static void OpenIntruderLevelSelect()
         {
@@ -34,6 +35,7 @@ namespace ArchipelagoSignalis
         {
             var appendedSceneName = sceneName.Substring(0, 3);
             MelonLogger.Msg($"Appended scene name: {appendedSceneName}");
+            currentScene = appendedSceneName;
             if (intruderLevelNames.Contains(appendedSceneName))
             {
                 SaveManagement.UpdateLevelsReached(appendedSceneName);
