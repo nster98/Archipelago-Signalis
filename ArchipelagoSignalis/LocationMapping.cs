@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArchipelagoSignalis
 {
-    class ItemMapping
+    class LocationMapping
     {
         public string ArchipelagoItemName { get; set; }
         public string InGameName { get; set; }
+        public string Scene { get; set; }
+        public string Room { get; set; }
     }
 }

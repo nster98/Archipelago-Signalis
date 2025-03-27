@@ -51,6 +51,7 @@ namespace ArchipelagoSignalis
         // TODO: Add only when not in inventory to prevent crashing?
         public static void AddItemToInventory(string itemName)
         {
+            MelonLogger.Msg($"Attempting to add item to inventory: {itemName}");
             if (itemName.Contains("Radio Module"))
             {
                 GiveRadio();

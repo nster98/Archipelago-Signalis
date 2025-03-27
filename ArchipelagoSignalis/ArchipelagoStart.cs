@@ -14,25 +14,29 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using static ResetGame;
+using Harmony;
 
 namespace ArchipelagoSignalis
 {
     public class ArchipelagoStart : MelonMod
     {
+        private static List<LocationMapping> locationMappings;
         private static List<ItemMapping> itemMappings;
 
         public override void OnInitializeMelon()
         {
             base.OnInitializeMelon();
             MelonLogger.Msg("ArchipelagoSignalis loaded");
+            LoadLocationMappings();
             LoadItemMappings();
         }
 
         private void LoadItemMappings()
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "ArchipelagoSignalis.resource_files.signalis_location_mapping.csv";
+            var resourceName = "ArchipelagoSignalis.resource_files.signalis_item_mapping.csv";
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (StreamReader reader = new StreamReader(stream))
@@ -41,13 +45,11 @@ namespace ArchipelagoSignalis
                 var lines = reader.ReadToEnd().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var line in lines.Skip(1)) // Skip header line
                 {
-                    var values = line.Split(',');
+                    var values = ParseCsvLine(line);
                     var itemMapping = new ItemMapping
                     {
                         ArchipelagoItemName = values[0],
-                        InGameName = values[1],
-                        Scene = values[2],
-                        Room = values[3]
+                        InGameName = values[1]
                     };
                     itemMappings.Add(itemMapping);
                 }
@@ -55,19 +57,75 @@ namespace ArchipelagoSignalis
             }
         }
 
-        public static string GetArchipelagoItemName(string inGameName, string scene, string room)
+        private void LoadLocationMappings()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "ArchipelagoSignalis.resource_files.signalis_location_mapping.csv";
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                locationMappings = new List<LocationMapping>();
+                var lines = reader.ReadToEnd().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var line in lines.Skip(1)) // Skip header line
+                {
+                    var values = ParseCsvLine(line);
+                    var locationMapping = new LocationMapping
+                    {
+                        ArchipelagoItemName = values[0],
+                        InGameName = values[1],
+                        Scene = values[2],
+                        Room = values[3]
+                    };
+                    locationMappings.Add(locationMapping);
+                }
+                MelonLogger.Msg("Location mappings loaded successfully.");
+            }
+        }
+
+        private string[] ParseCsvLine(string line)
+        {
+            var values = new List<string>();
+            var current = new StringBuilder();
+            bool inQuotes = false;
+
+            foreach (var c in line)
+            {
+                if (c == '"' && !inQuotes)
+                {
+                    inQuotes = true;
+                }
+                else if (c == '"' && inQuotes)
+                {
+                    inQuotes = false;
+                }
+                else if (c == ',' && !inQuotes)
+                {
+                    values.Add(current.ToString());
+                    current.Clear();
+                }
+                else
+                {
+                    current.Append(c);
+                }
+            }
+            values.Add(current.ToString());
+            return values.ToArray();
+        }
+
+        public static string GetArchipelagoItemNameFromLocation(string inGameName, string scene, string room)
         {
             MelonLogger.Msg($"Looking for item mapping for {inGameName} in {scene} {room}");
-            MelonLogger.Msg($"Item mappings count: {itemMappings.Count}");
-            MelonLogger.Msg($"Item Mappings index 1: <{itemMappings[1].Room}>");
-            var itemMapping = itemMappings.FirstOrDefault(im => im.InGameName == inGameName && im.Scene == scene && (string.IsNullOrEmpty(im.Room) || im.Room == room));
-            MelonLogger.Msg($"Found mapping :: {itemMapping?.ArchipelagoItemName}");
-            return itemMapping?.ArchipelagoItemName;
+            var locationMapping = locationMappings.FirstOrDefault(im => im.InGameName == inGameName && im.Scene == scene && (string.IsNullOrEmpty(im.Room) || im.Room == room));
+            MelonLogger.Msg($"Found location mapping :: {locationMapping?.ArchipelagoItemName}");
+            return locationMapping?.ArchipelagoItemName;
         }
 
         public static string GetSignalisItemName(string archipelagoName)
         {
+            MelonLogger.Msg($"Looking for item mapping for {archipelagoName}");
             var itemMapping = itemMappings.FirstOrDefault(im => im.ArchipelagoItemName == archipelagoName);
+            MelonLogger.Msg($"Found item mapping :: {itemMapping?.ArchipelagoItemName}");
             return itemMapping?.InGameName;
         }
 
@@ -94,6 +152,7 @@ namespace ArchipelagoSignalis
             LevelSelect.FillInLevelSelect(sceneName);
             LevelSelect.EnteredNewLevel(sceneName);
             ArchipelagoHelper.ConnectToArchipelagoOnBeginAnew(sceneName);
+            ArchipelagoHelper.CheckDisconnectFromArchipelago(sceneName);
         }
     }
 }

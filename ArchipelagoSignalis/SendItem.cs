@@ -16,7 +16,7 @@ namespace ArchipelagoSignalis
             if (null != ArchipelagoHelper.Session)
             {
                 MelonLogger.Msg($"Sending item {itemName} to Archipelago");
-                var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemName(itemName, LevelSelect.currentScene, PlayerState.currentRoom.roomName);
+                var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemNameFromLocation(itemName, LevelSelect.currentScene, PlayerState.currentRoom.roomName);
                 long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, translatedArchipelagoItemName);
                 MelonLogger.Msg($"Location ID: {locationId}");
                 ArchipelagoHelper.Session.Locations.CompleteLocationChecks(locationId);

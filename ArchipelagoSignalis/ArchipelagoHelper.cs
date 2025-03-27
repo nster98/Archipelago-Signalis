@@ -115,21 +115,30 @@ namespace ArchipelagoSignalis
 
             if (archipelagoItemsSize > gameItemsSize)
             {
-                MelonLogger.Msg($"Retrieving {archipelagoItemsSize - gameItemsSize} items from Archipelago");
-                List<ItemInfo> itemsToReceive = session.Items.AllItemsReceived.Skip(gameItemsSize).ToList();
+                MelonLogger.Msg($"Retrieving {archipelagoItemsSize - gameItemsSize + 1} items from Archipelago");
+                List<ItemInfo> itemsToReceive = session.Items.AllItemsReceived.Skip(gameItemsSize - 1).ToList();
                 foreach (ItemInfo item in itemsToReceive)
                 {
-                    RetrieveItem.AddItemToInventory(item.ItemName);
+                    RetrieveItem.AddItemToInventory(ArchipelagoStart.GetSignalisItemName(item.ItemName));
                 }
             }
         }
 
         public static void ConnectToArchipelagoOnBeginAnew(string sceneName)
         {
-            if (sceneName == "PEN_Wreck" && null == Session)
+            if (sceneName == "PEN_Wreck" && (null == Session || !Session.Socket.Connected))
             {
+                SaveManagement.ResetItemsReceived();
                 MelonLogger.Msg("Connecting to Archipelago on Begin Anew");
                 Task.Run(InitializeArchipelago);
+            }
+        }
+
+        public static void CheckDisconnectFromArchipelago(string sceneName)
+        {
+            if (sceneName == "MainMenu" && null != Session)
+            {
+                Session.Socket.DisconnectAsync();
             }
         }
     }

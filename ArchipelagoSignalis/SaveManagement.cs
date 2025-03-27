@@ -29,15 +29,15 @@ namespace ArchipelagoSignalis
 
         public static void UpdateItemsReceived(string itemName)
         {
-            if (ItemsCollected == "")
+            if (ItemsReceived == "")
             {
-                ItemsCollected = itemName;
+                ItemsReceived = itemName;
             }
             else
             {
-                ItemsCollected += "," + itemName;
+                ItemsReceived += "," + itemName;
             }
-            MelonLogger.Msg($"Items received: {ItemsCollected}");
+            MelonLogger.Msg($"Items received: {ItemsReceived}");
         }
 
         public static void UpdateLevelsReached(string levelName)
@@ -53,14 +53,10 @@ namespace ArchipelagoSignalis
             MelonLogger.Msg($"Levels reached: {LevelsReached}");
         }
 
-        public static void SaveFirstTimeLoad()
+        public static void ResetItemsReceived()
         {
-            SProgress.SetBool("PEN_WRECK_LOADED", true);
-        }
-
-        public static bool CheckFirstTimeLoad()
-        {
-            return SProgress.GetBool("PEN_WRECK_LOADED", false);
+            ItemsReceived = "";
+            MelonLogger.Msg($"Items received reset :: {ItemsReceived}");
         }
     }
 
