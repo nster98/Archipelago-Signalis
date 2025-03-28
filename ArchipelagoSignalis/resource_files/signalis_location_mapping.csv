@@ -7,14 +7,14 @@ Receiptionist Key,SurfaceKey,LOV,
 Protektor Key,ObservationKey,LOV,
 Pistol,Pistol,LOV,
 Aperture Card,MicroFiche,LOV,
-Classroom Key (Installation AEON),ClassroomKey,LOV,
+Classroom Key (Installation AEON),ClassRoomKey,LOV,
 Repair Patch (Installation AEON - Aula),Health25,LOV,Aula
 10mm Ammo (Installation AEON - Aula),PistolAmmo,LOV,Aula
 Receive Photo of Alina,AlinaPhoto,LOV,
 Service Hatch Key,ServiceKey,DET,
 East Wing Key,EastKey,DET,
-10mm Ammo (Worker Barracks - Office),PistolAmmo,DET,Office
-Disposable Stun Prod (Worker Barracks - Office),Taser,DET,Office
+10mm Ammo (Worker Barracks - Office),PistolAmmo,DET,Registration Office
+Disposable Stun Prod (Worker Barracks - Office),Taser,DET,Registration Office
 Repair Patch (Worker Barracks - First Aid),Health25,DET,FirstAid
 Plate of Eternity,PlateEternity,DET,
 Radio Module,Radio,DET,

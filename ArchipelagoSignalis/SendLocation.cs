@@ -35,9 +35,27 @@ namespace ArchipelagoSignalis
             {
                 MelonLogger.Msg("Manually sending location Receive Photo of Alina to Archipelago");
                 SendCheckToArchipelago("AlinaPhoto");
+                RemoveItemFromInventory("AlinaPhoto");
             }
         }
-        
+
+        private static void RemoveItemFromInventory(string itemName)
+        {
+            List<string> elsterItems = new List<string>();
+            foreach (var item in InventoryManager.elsterItems)
+            {
+                elsterItems.Add(item.key._item.ToString());
+            }
+
+            foreach (AnItem item in InventoryManager.allItems.Values)
+            {
+                if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+                {
+                    InventoryManager.RemoveItem(item);
+                }
+            }
+        }
+
         [HarmonyPatch(typeof(ItemPickup), "release")]
         public static class DetectItemPickup
         {
