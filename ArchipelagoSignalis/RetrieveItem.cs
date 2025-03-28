@@ -14,6 +14,8 @@ namespace ArchipelagoSignalis
 {
     public class RetrieveItem : MelonMod
     {
+        public static Queue<string> RetrieveItemQueue = new();
+
         public static async void CheckForF9KeyPress()
         {
             if (Input.GetKeyDown(KeyCode.F9))
@@ -48,46 +50,55 @@ namespace ArchipelagoSignalis
         }
 
         // Add item to inventory or box, depending on current inventory count
-        // TODO: Add only when not in inventory to prevent crashing?
         public static void AddItemToInventory(string itemName)
         {
-            MelonLogger.Msg($"Attempting to add item to inventory: {itemName}");
-            if (itemName.Contains("Radio Module"))
+            // Adding item while inventory is open will crash the game
+            // Queue the item instead, and add it when inventory is closed
+            if (LevelSelect.isInventoryOpen)
             {
-                GiveRadio();
-                SaveManagement.UpdateItemsReceived(itemName);
-                return;
+                MelonLogger.Msg($"Adding item to queue: {itemName}");
+                RetrieveItemQueue.Enqueue(itemName);
             }
-            
-            List<string> elsterItems = new List<string>();
-            foreach (var item in InventoryManager.elsterItems)
+            else
             {
-                elsterItems.Add(item.key._item.ToString());
-            }
-
-            var countOfItems = GetCountOfItemsToAddToInventory(itemName);
-
-            foreach (AnItem item in InventoryManager.allItems.Values)
-            {
-                if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+                MelonLogger.Msg($"Attempting to add item to inventory: {itemName}");
+                if (itemName.Contains("Radio Module"))
                 {
-                    var itemCount = InventoryManager.elsterItems.Count;
-                    if (elsterItems.Contains("PhotoModule")) itemCount--;
-                    if (elsterItems.Contains("Flashlight")) itemCount--;
+                    GiveRadio();
+                    SaveManagement.UpdateItemsReceived(itemName);
+                    return;
+                }
 
-                    if (itemCount > 6)
+                List<string> elsterItems = new List<string>();
+                foreach (var item in InventoryManager.elsterItems)
+                {
+                    elsterItems.Add(item.key._item.ToString());
+                }
+
+                var countOfItems = GetCountOfItemsToAddToInventory(itemName);
+
+                foreach (AnItem item in InventoryManager.allItems.Values)
+                {
+                    if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
                     {
-                        MelonLogger.Msg($"Adding item to box: {itemName}");
-                        InventoryManager.boxItem(item, countOfItems);
-                    }
-                    else
-                    {
-                        MelonLogger.Msg($"Adding item to inventory: {itemName}");
-                        InventoryManager.AddItem(item, countOfItems);
+                        var itemCount = InventoryManager.elsterItems.Count;
+                        if (elsterItems.Contains("PhotoModule")) itemCount--;
+                        if (elsterItems.Contains("Flashlight")) itemCount--;
+
+                        if (itemCount > 6)
+                        {
+                            MelonLogger.Msg($"Adding item to box: {itemName}");
+                            InventoryManager.boxItem(item, countOfItems);
+                        }
+                        else
+                        {
+                            MelonLogger.Msg($"Adding item to inventory: {itemName}");
+                            InventoryManager.AddItem(item, countOfItems);
+                        }
                     }
                 }
+                SaveManagement.UpdateItemsReceived(itemName);
             }
-            SaveManagement.UpdateItemsReceived(itemName);
         }
 
         public static void GiveRadio()

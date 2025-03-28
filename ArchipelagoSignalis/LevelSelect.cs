@@ -94,6 +94,14 @@ namespace ArchipelagoSignalis
         {
             MelonLogger.Msg("Inventory toggled");
             LevelSelect.isInventoryOpen = !LevelSelect.isInventoryOpen;
+
+            if (!LevelSelect.isInventoryOpen)
+            {
+                while (RetrieveItem.RetrieveItemQueue.Any())
+                {
+                    RetrieveItem.AddItemToInventory(RetrieveItem.RetrieveItemQueue.Dequeue());
+                }
+            }
         }
     }
 }
