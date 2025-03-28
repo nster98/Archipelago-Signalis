@@ -65,11 +65,11 @@ namespace ArchipelagoSignalis
                 elsterItems.Add(item.key._item.ToString());
             }
 
-            var itemNameToAdd = ParseMultipleItemName(itemName);
+            var countOfItems = GetCountOfItemsToAddToInventory(itemName);
 
             foreach (AnItem item in InventoryManager.allItems.Values)
             {
-                if (string.Equals(itemNameToAdd, item.name, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
                 {
                     var itemCount = InventoryManager.elsterItems.Count;
                     if (elsterItems.Contains("PhotoModule")) itemCount--;
@@ -77,13 +77,13 @@ namespace ArchipelagoSignalis
 
                     if (itemCount > 6)
                     {
-                        MelonLogger.Msg($"Adding item to box: {itemNameToAdd}");
-                        InventoryManager.boxItem(item, 1);
+                        MelonLogger.Msg($"Adding item to box: {itemName}");
+                        InventoryManager.boxItem(item, countOfItems);
                     }
                     else
                     {
-                        MelonLogger.Msg($"Adding item to inventory: {itemNameToAdd}");
-                        InventoryManager.AddItem(item, 1);
+                        MelonLogger.Msg($"Adding item to inventory: {itemName}");
+                        InventoryManager.AddItem(item, countOfItems);
                     }
                 }
             }
@@ -118,29 +118,27 @@ namespace ArchipelagoSignalis
             }
         }
 
-        public static string ParseMultipleItemName(string itemName)
+        public static int GetCountOfItemsToAddToInventory(string itemName)
         {
             if (itemName.Contains("Ammo"))
             {
-                if (itemName.Contains("FlakGun")) return "FlakGunAmmo";
-                if (itemName.Contains("FlareGun")) return "FlareGunAmmo";
-                if (itemName.Contains("Pistol")) return "PistolAmmo";
-                if (itemName.Contains("Revolver")) return "RevolverAmmo";
-                if (itemName.Contains("Rifle")) return "RifleAmmo";
-                if (itemName.Contains("Shotgun")) return "ShotgunAmmo";
-                if (itemName.Contains("Smg")) return "SmgAmmo";
+                if (itemName.Contains("FlakGun")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 2;
+                if (itemName.Contains("FlareGun")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 2;
+                if (itemName.Contains("Pistol")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 10;
+                if (itemName.Contains("Revolver")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 6;
+                if (itemName.Contains("Rifle")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 3;
+                if (itemName.Contains("Shotgun")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 3;
+                if (itemName.Contains("Smg")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 16;
             } else if (itemName.Contains("Health"))
             {
-                if (itemName.Contains("25")) return "Health25";
-                if (itemName.Contains("50")) return "Health50";
-                if (itemName.Contains("100")) return "Health100";
-                if (itemName.Contains("Fast")) return "HealthFast";
-            } else if (itemName.Contains("Injector"))
+                return (int) DynamicDifficulty.HealthPickupMultiplier * 1;
+            }
+            else if (itemName.Contains("SignalFlare"))
             {
-                return "Injector";
+                return 2;
             }
 
-            return itemName;
+            return 1;
         }
     }
 

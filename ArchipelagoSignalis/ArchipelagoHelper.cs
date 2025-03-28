@@ -94,15 +94,15 @@ namespace ArchipelagoSignalis
         {
             foreach (long locationId in session.Locations.AllLocationsChecked)
             {
-                var itemsCollected = SaveManagement.ItemsCollected.Split(',').ToList();
+                var itemsCollected = SaveManagement.LocationsChecked.Split(',').ToList();
 
                 MelonLogger.Msg($"Location checked: {locationId}");
                 string itemName = session.Locations.GetLocationNameFromId(locationId);
-                string translatedItemName = ArchipelagoStart.GetSignalisItemNameFromArchipelagoLocation(itemName);
+                // string translatedItemName = ArchipelagoStart.GetSignalisItemNameFromArchipelagoLocation(itemName);
 
-                if (!itemsCollected.Contains(translatedItemName))
+                if (!itemsCollected.Contains(itemName))
                 {
-                    SaveManagement.UpdateItemsCollected(translatedItemName);
+                    SaveManagement.UpdateLocationsChecked(itemName);
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace ArchipelagoSignalis
         {
             // TODO: Test if this works, may need to be async
             var lastItemSent = session.DataStorage["LastItemSent"];
-            var itemsCollected = SaveManagement.ItemsCollected.Split(',').ToList();
+            var itemsCollected = SaveManagement.LocationsChecked.Split(',').ToList();
             int itemIndex = itemsCollected.IndexOf(lastItemSent);
 
             if (itemIndex != -1 && itemIndex < itemsCollected.Count - 1)
@@ -120,7 +120,7 @@ namespace ArchipelagoSignalis
                 foreach (var itemToSend in itemsToSend)
                 {
                     MelonLogger.Msg($"Sending item {itemToSend} to Archipelago");
-                    SendItem.SendCheckToArchipelago(itemToSend);
+                    SendLocation.SendCheckToArchipelago(itemToSend);
                 }
             }
             

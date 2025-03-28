@@ -163,7 +163,7 @@ namespace ArchipelagoSignalis
             ArchipelagoHelper.ConnectToArchipelagoOnBeginAnew(sceneName);
             ArchipelagoHelper.CheckDisconnectFromArchipelago(sceneName);
 
-            SendItem.SendPhotoOfAlinaLocation(sceneName);
+            SendLocation.SendPhotoOfAlinaLocation(sceneName);
         }
     }
 }

@@ -6,11 +6,11 @@ The King in Yellow,YellowKing,PEN,
 Receiptionist Key,SurfaceKey,LOV,
 Protektor Key,ObservationKey,LOV,
 Pistol,Pistol,LOV,
-Aperture Card,Microfiche,LOV,
+Aperture Card,MicroFiche,LOV,
 Classroom Key (Installation AEON),ClassroomKey,LOV,
 Repair Patch (Installation AEON - Aula),Health25,LOV,Aula
 10mm Ammo (Installation AEON - Aula),PistolAmmo,LOV,Aula
-Receive Photo of Alina,AlinaPhoto,DET,
+Receive Photo of Alina,AlinaPhoto,LOV,
 Service Hatch Key,ServiceKey,DET,
 East Wing Key,EastKey,DET,
 10mm Ammo (Worker Barracks - Office),PistolAmmo,DET,Office

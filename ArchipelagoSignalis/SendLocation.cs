@@ -9,14 +9,16 @@ using MelonLoader;
 
 namespace ArchipelagoSignalis
 {
-    class SendItem : MelonMod
+    class SendLocation : MelonMod
     {
         public static void SendCheckToArchipelago(string itemName)
         {
+            var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemNameFromLocation(itemName, LevelSelect.currentScene, PlayerState.currentRoom.roomName);
+            SaveManagement.UpdateLocationsChecked(translatedArchipelagoItemName);
+
             if (null != ArchipelagoHelper.Session && ArchipelagoHelper.Session.Socket.Connected)
             {
                 MelonLogger.Msg($"Sending item {itemName} to Archipelago");
-                var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemNameFromLocation(itemName, LevelSelect.currentScene, PlayerState.currentRoom.roomName);
                 long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, translatedArchipelagoItemName);
                 MelonLogger.Msg($"Location ID: {locationId}");
                 ArchipelagoHelper.Session.Locations.CompleteLocationChecks(locationId);
@@ -29,11 +31,10 @@ namespace ArchipelagoSignalis
 
         public static void SendPhotoOfAlinaLocation(string sceneName)
         {
-            if (sceneName.Contains("LOV") && !SaveManagement.ItemsCollected.Contains("Receive Photo of Alina"))
+            if (sceneName.Contains("LOV") && !SaveManagement.LocationsChecked.Contains("Receive Photo of Alina"))
             {
                 MelonLogger.Msg("Manually sending location Receive Photo of Alina to Archipelago");
-                SendCheckToArchipelago("Receive Photo of Alina");
-                SaveManagement.UpdateItemsCollected("Receive Photo of Alina");
+                SendCheckToArchipelago("AlinaPhoto");
             }
         }
         
@@ -93,9 +94,6 @@ namespace ArchipelagoSignalis
                         fullItemName += "_" + playerState.roomName;
                     }
 
-                    SaveManagement.UpdateItemsCollected(fullItemName);
-
-                    //TODO: Call Archipelago API for check
                     SendCheckToArchipelago(fullItemName);
                     ArchipelagoHelper.Session.DataStorage[Scope.Slot, "LastItemSent"] = fullItemName;
                 }

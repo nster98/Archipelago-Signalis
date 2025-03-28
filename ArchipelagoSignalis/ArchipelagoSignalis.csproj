@@ -98,7 +98,7 @@
     <Compile Include="QualityOfLife.cs" />
     <Compile Include="RetrieveItem.cs" />
     <Compile Include="SaveManagement.cs" />
-    <Compile Include="SendItem.cs" />
+    <Compile Include="SendLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

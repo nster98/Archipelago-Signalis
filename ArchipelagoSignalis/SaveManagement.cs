@@ -11,20 +11,20 @@ namespace ArchipelagoSignalis
     class SaveManagement : MelonMod
     {
         public static string LevelsReached = "";
-        public static string ItemsCollected = "";
+        public static string LocationsChecked = "";
         public static string ItemsReceived = "";
 
-        public static void UpdateItemsCollected(string itemName)
+        public static void UpdateLocationsChecked(string itemName)
         {
-            if (ItemsCollected == "")
+            if (LocationsChecked == "")
             {
-                ItemsCollected = itemName;
+                LocationsChecked = itemName;
             }
-            else
+            else if (!LocationsChecked.Contains(itemName))
             {
-                ItemsCollected += "," + itemName;
+                LocationsChecked += "," + itemName;
             }
-            MelonLogger.Msg($"Items collected: {ItemsCollected}");
+            MelonLogger.Msg($"Locations checked: {LocationsChecked}");
         }
 
         public static void UpdateItemsReceived(string itemName)
@@ -67,7 +67,7 @@ namespace ArchipelagoSignalis
         {
             MelonLogger.Msg("Saving game");
             
-            SProgress.SetString("ItemsCollected", SaveManagement.ItemsCollected);
+            SProgress.SetString("LocationsChecked", SaveManagement.LocationsChecked);
             SProgress.SetString("ItemsReceived", SaveManagement.ItemsReceived);
             SProgress.SetString("LevelsReached", SaveManagement.LevelsReached);
         }
@@ -80,11 +80,11 @@ namespace ArchipelagoSignalis
         {
             MelonLogger.Msg("Loading save");
 
-            SaveManagement.ItemsCollected = SProgress.GetString("ItemsCollected", "");
+            SaveManagement.LocationsChecked = SProgress.GetString("LocationsChecked", "");
             SaveManagement.ItemsReceived = SProgress.GetString("ItemsReceived", "");
             SaveManagement.LevelsReached = SProgress.GetString("LevelsReached", "");
 
-            MelonLogger.Msg($"Loading game :: Items collected: {SaveManagement.ItemsCollected}");
+            MelonLogger.Msg($"Loading game :: Items collected: {SaveManagement.LocationsChecked}");
             MelonLogger.Msg($"Loading game :: Levels reached: {SaveManagement.LevelsReached}");
 
             Task.Run(ArchipelagoHelper.InitializeArchipelago);
