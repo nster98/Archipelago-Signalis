@@ -108,9 +108,14 @@ namespace ArchipelagoSignalis
                 {
                     MelonLogger.Msg($"Received item: {item.ItemName}");
                     AddItemToInventory(ArchipelagoStart.GetSignalisItemName(item.ItemName));
-                    SaveManagement.UpdateItemsReceived(item.ItemName);
                 }
             };
+            // Fix to ensure the latest item will be dequeued when retrieved
+            while (session.Items.Any())
+            {
+                ItemInfo removedItem = session.Items.DequeueItem();
+                MelonLogger.Msg($"Removed item from the queue: {removedItem.ItemName}");
+            }
         }
 
         public static string ParseMultipleItemName(string itemName)

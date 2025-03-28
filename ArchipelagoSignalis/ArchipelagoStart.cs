@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Text;
 using static ResetGame;
 using Harmony;
+using static UnityEngine.GUI;
 
 namespace ArchipelagoSignalis
 {
@@ -121,6 +122,13 @@ namespace ArchipelagoSignalis
             return locationMapping?.ArchipelagoItemName;
         }
 
+        public static string GetSignalisItemNameFromArchipelagoLocation(string archipelagoName)
+        {
+            var locationMapping = locationMappings.FirstOrDefault(im => im.ArchipelagoItemName == archipelagoName);
+            return locationMapping?.InGameName;
+
+        }
+
         public static string GetSignalisItemName(string archipelagoName)
         {
             MelonLogger.Msg($"Looking for item mapping for {archipelagoName}");
@@ -151,8 +159,11 @@ namespace ArchipelagoSignalis
 
             LevelSelect.FillInLevelSelect(sceneName);
             LevelSelect.EnteredNewLevel(sceneName);
+
             ArchipelagoHelper.ConnectToArchipelagoOnBeginAnew(sceneName);
             ArchipelagoHelper.CheckDisconnectFromArchipelago(sceneName);
+
+            SendItem.SendPhotoOfAlinaLocation(sceneName);
         }
     }
 }

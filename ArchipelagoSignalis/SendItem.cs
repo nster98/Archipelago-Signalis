@@ -13,7 +13,7 @@ namespace ArchipelagoSignalis
     {
         public static void SendCheckToArchipelago(string itemName)
         {
-            if (null != ArchipelagoHelper.Session)
+            if (null != ArchipelagoHelper.Session && ArchipelagoHelper.Session.Socket.Connected)
             {
                 MelonLogger.Msg($"Sending item {itemName} to Archipelago");
                 var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemNameFromLocation(itemName, LevelSelect.currentScene, PlayerState.currentRoom.roomName);
@@ -24,6 +24,16 @@ namespace ArchipelagoSignalis
             else
             {
                 MelonLogger.Msg("Archipelago session is null, not sending item");
+            }
+        }
+
+        public static void SendPhotoOfAlinaLocation(string sceneName)
+        {
+            if (sceneName.Contains("LOV") && !SaveManagement.ItemsCollected.Contains("Receive Photo of Alina"))
+            {
+                MelonLogger.Msg("Manually sending location Receive Photo of Alina to Archipelago");
+                SendCheckToArchipelago("Receive Photo of Alina");
+                SaveManagement.UpdateItemsCollected("Receive Photo of Alina");
             }
         }
         
@@ -63,7 +73,18 @@ namespace ArchipelagoSignalis
                     }
 
                     MelonLogger.Msg($"Removed item {item._item} from inventory");
-                    InventoryManager.RemoveItem(item);
+                    if (!string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase))
+                    {
+                        InventoryManager.RemoveItem(item);
+                    }
+                    else
+                    {
+                        MelonLogger.Msg("Yellow King location checked, storing all items");
+                        InventoryManager.storeAllItems();
+                        RetrieveItem.AddItemToInventory("YellowKing");
+                        // TODO: Add all items to inventory EXCEPT yellow king
+                    }
+
 
                     var fullItemName = item._item.ToString();
                     var playerState = PlayerState.currentRoom;

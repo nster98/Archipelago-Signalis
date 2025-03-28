@@ -66,6 +66,7 @@ namespace ArchipelagoSignalis
             {
                 MelonLogger.Msg($"Connected to {Server + ":" + Port} as {SlotName}");
                 RetrieveItemsAfterLogin(Session);
+                PopulateItemsCollectedAfterLogin(Session);
                 SendItemsAfterLogin(Session);
                 RetrieveItem.ListenForItemReceived(Session);
                 
@@ -86,6 +87,23 @@ namespace ArchipelagoSignalis
             else
             {
                 Session = null;
+            }
+        }
+
+        private static void PopulateItemsCollectedAfterLogin(ArchipelagoSession session)
+        {
+            foreach (long locationId in session.Locations.AllLocationsChecked)
+            {
+                var itemsCollected = SaveManagement.ItemsCollected.Split(',').ToList();
+
+                MelonLogger.Msg($"Location checked: {locationId}");
+                string itemName = session.Locations.GetLocationNameFromId(locationId);
+                string translatedItemName = ArchipelagoStart.GetSignalisItemNameFromArchipelagoLocation(itemName);
+
+                if (!itemsCollected.Contains(translatedItemName))
+                {
+                    SaveManagement.UpdateItemsCollected(translatedItemName);
+                }
             }
         }
 
@@ -111,12 +129,14 @@ namespace ArchipelagoSignalis
         public static void RetrieveItemsAfterLogin(ArchipelagoSession session)
         {
             int archipelagoItemsSize = session.Items.AllItemsReceived.Count;
-            int gameItemsSize = SaveManagement.ItemsReceived.Split(',').Length;
+            int gameItemsSize = SaveManagement.ItemsReceived.Split(',').Length - 1;
+
+            MelonLogger.Msg($"Archipelago items: {archipelagoItemsSize}, Game items: {gameItemsSize}");
 
             if (archipelagoItemsSize > gameItemsSize)
             {
-                MelonLogger.Msg($"Retrieving {archipelagoItemsSize - gameItemsSize + 1} items from Archipelago");
-                List<ItemInfo> itemsToReceive = session.Items.AllItemsReceived.Skip(gameItemsSize - 1).ToList();
+                MelonLogger.Msg($"Retrieving {archipelagoItemsSize - gameItemsSize} items from Archipelago");
+                List<ItemInfo> itemsToReceive = session.Items.AllItemsReceived.Skip(gameItemsSize).ToList();
                 foreach (ItemInfo item in itemsToReceive)
                 {
                     RetrieveItem.AddItemToInventory(ArchipelagoStart.GetSignalisItemName(item.ItemName));
