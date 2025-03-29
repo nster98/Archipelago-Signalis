@@ -92,7 +92,7 @@ namespace ArchipelagoSignalis
                     }
 
                     if (!string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase)
-                        || CheckForDuplicateItem(item))
+                        || CheckForDuplicateItem(item._item.ToString()))
                     {
                         InventoryManager.RemoveItem(item);
                         MelonLogger.Msg($"Removed item {item._item} from inventory");
@@ -119,12 +119,12 @@ namespace ArchipelagoSignalis
 
             }
 
-            private static bool CheckForDuplicateItem(AnItem item)
+            private static bool CheckForDuplicateItem(string item)
             {
-                var isHealth = item.name.Contains("Health") || item.name.Contains("Injector");
-                var isAmmo = item.name.Contains("Ammo");
-                var isFlare = item.name.Contains("SignalFlare");
-                return !SaveManagement.ItemsReceived.Contains(item.name) || (isHealth || isAmmo || isFlare);
+                var isHealth = item.Contains("Health") || item.Contains("Injector");
+                var isAmmo = item.Contains("Ammo");
+                var isFlare = item.Contains("SignalFlare");
+                return !SaveManagement.ItemsReceived.Contains(item) || (isHealth || isAmmo || isFlare);
             }
         }
     }
