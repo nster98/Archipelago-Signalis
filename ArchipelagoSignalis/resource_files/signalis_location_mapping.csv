@@ -13,14 +13,14 @@ Repair Patch (Installation AEON - Aula),Health25,LOV,Aula
 Receive Photo of Alina,AlinaPhoto,LOV,
 Service Hatch Key,ServiceKey,DET,
 East Wing Key,EastKey,DET,
-10mm Ammo (Worker Barracks - Office),PistolAmmo,DET,Registration Office
-Disposable Stun Prod (Worker Barracks - Office),Taser,DET,Registration Office
+10mm Ammo (Worker Barracks - Office),PistolAmmo,DET,Office
+Disposable Stun Prod (Worker Barracks - Office),Taser,DET,Office
 Repair Patch (Worker Barracks - First Aid),Health25,DET,FirstAid
 Plate of Eternity,PlateEternity,DET,
 Radio Module,Radio,DET,
-Identification Key,ElevatorKey,DET,Registration Office
+Identification Key,ElevatorKey,DET,
 Repair Patch (Worker Barracks - Protektor Bathroom),Health25,DET,StaffBath
-10mm Ammo (Worker Barracks - Store Room),PistolAmmo,DET,Upper Store Room
+10mm Ammo (Worker Barracks - Store Room),PistolAmmo,DET,StorageUnit
 Mensa Key,MensaKey,DET,
 "10mm Ammo (Worker Barracks - Mensa, Top of Room)",PistolAmmo,DET,Mensa
 "10mm Ammo (Worker Barracks - Mensa, Bottom of Room)",PistolAmmo,DET,Mensa
@@ -90,7 +90,7 @@ Flashlight Module,Flashlight,RES,
 Astrolabe,ShrineDial,RES,
 Repair Spray (Protektor Levels - Library),Health50,RES,Library
 Hummingbird Key,KolbiriKey,RES,
-Disposable Stun Prod (Protektor Levels - KLBR Study),Taser,RES,Kolobris Study
+Disposable Stun Prod (Protektor Levels - KLBR Study),Taser,RES,Kolibris Study
 Eagle Key,AdlersKey,RES,
 Autoinjector (Protektor Levels - Repair Bay),Injector,RES,Repair Bay
 Shotgun Rounds (Protektor Levels - Shooting Range),ShotgunAmmo,RES,Shooting Range
@@ -107,7 +107,7 @@ Shotgun Rounds (Protektor Levels - ADLR Bedroom),ShotgunAmmo,RES,Adlers Bedroom
 "Repair Spray (Protektor Levels - STCR Dorm, 8th Floor)",Health50,RES,STCR/KNCR Dorm
 "12mm Ammo (Protektor Levels - STCR Dorm, 8th Floor)",RevolverAmmo,RES,STCR/KNCR Dorm
 Key of Eternity,KeyOfEternity,RES,
-Shotgun Rounds (Protektor Levels - KLBR Bedroom),ShotgunAmmo,RES,Kolobris Bedroom
+Shotgun Rounds (Protektor Levels - KLBR Bedroom),ShotgunAmmo,RES,Kolibris Bedroom
 Postbox Key,PostboxKey,RES,
 Administrator's Key,MasterKey,RES,
 Owl Key,OwlKey,RES,
