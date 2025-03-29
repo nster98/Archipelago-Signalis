@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Text;
 using static ResetGame;
 using Harmony;
+using TMPro;
 using static UnityEngine.GUI;
 
 namespace ArchipelagoSignalis
@@ -164,6 +165,23 @@ namespace ArchipelagoSignalis
             ArchipelagoHelper.CheckDisconnectFromArchipelago(sceneName);
 
             SendLocation.SendPhotoOfAlinaLocation(sceneName);
+            UpdateVersionName(sceneName);
+        }
+
+        private void UpdateVersionName(string sceneName)
+        {
+            if (sceneName == "MainMenu")
+            {
+                GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+                foreach (GameObject gameObject in objects)
+                {
+                    if (gameObject.activeInHierarchy && gameObject.name == "Version")
+                    {
+                        TextMeshPro text = gameObject.GetComponent<TextMeshPro>();
+                        text.m_text += " | Archipelago v0.2.1";
+                    }
+                }
+            }
         }
     }
 }
