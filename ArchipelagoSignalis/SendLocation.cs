@@ -91,10 +91,11 @@ namespace ArchipelagoSignalis
                         return;
                     }
 
-                    MelonLogger.Msg($"Removed item {item._item} from inventory");
-                    if (!string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase))
+                    if (!string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase)
+                        || !SaveManagement.ItemsReceived.Contains(item.name))
                     {
                         InventoryManager.RemoveItem(item);
+                        MelonLogger.Msg($"Removed item {item._item} from inventory");
                     }
                     else
                     {
