@@ -34,16 +34,16 @@ Disposable Stun Prod (Worker Barracks - Registry),Taser,DET,Registration Office
 Repair Spray+ (Worker Barracks - Isolation),HealthFast,DET,Isolation
 Key of Love,KeyOfLove,DET,
 Shotgun,Shotgun,MED,
-"Shotgun Rounds (Hospital Wing - HDU 02, Northwest)",ShotgunAmmo,MED,HDU 2 (Dentist)
-"Shotgun Rounds (Hospital Wing - HDU 02, Southwest)",ShotgunAmmo,MED,HDU 2 (Dentist)
+"Shotgun Rounds (Hospital Wing - HDU 02, Northwest)",ShotgunAmmo,MED,HDU 2
+"Shotgun Rounds (Hospital Wing - HDU 02, Southwest)",ShotgunAmmo,MED,HDU 2
 Shotgun Rounds (Hospital Wing - Morgue),ShotgunAmmo,MED,Morgue
 Pump Room Key,PumpKey,MED,
 Repair Spray (Hospital Wing - Store Room),Health50,MED,Upper Store Room
-Repair Spray (Hospital Wing - HDU 02),Health50,MED,HDU 2 (Dentist)
+Repair Spray (Hospital Wing - HDU 02),Health50,MED,HDU 2
 Socket Wrench Handle,SocketHandle,MED,
-Autoinjector (Hospital Wing - ICU 01),Injector,MED,ICU 1 (TV Room)
-10mm Ammo (Hospital Wing - HDU 02),PistolAmmo,MED,HDU 2 (Dentist)
-Repair Patch (Hospital Wing - HDU 02),Health25,MED,HDU 2 (Dentist)
+Autoinjector (Hospital Wing - ICU 01),Injector,MED,ICU 1
+10mm Ammo (Hospital Wing - HDU 02),PistolAmmo,MED,HDU 2
+Repair Patch (Hospital Wing - HDU 02),Health25,MED,HDU 2
 Disposable Stun Prod (Hospital Wing - Nurse Station),Taser,MED,Nurse Station
 Eidetic Module,PhotoModule,MED,
 Incinerator Key,IncineratorKey,MED,

@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Text;
 using static ResetGame;
 using Harmony;
+using RwActions;
 using TMPro;
 using static UnityEngine.GUI;
 
@@ -170,13 +171,20 @@ namespace ArchipelagoSignalis
             MelonLogger.Msg($"Scene loaded: {sceneName} build index {buildIndex}");
 
             LevelSelect.FillInLevelSelect(sceneName);
-            LevelSelect.EnteredNewLevel(sceneName);
 
             ArchipelagoHelper.ConnectToArchipelagoOnBeginAnew(sceneName);
             ArchipelagoHelper.CheckDisconnectFromArchipelago(sceneName);
 
             SendLocation.SendPhotoOfAlinaLocation(sceneName);
             UpdateVersionName(sceneName);
+        }
+
+        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+        {
+            base.OnSceneWasInitialized(buildIndex, sceneName);
+            MelonLogger.Msg($"Scene initialized: {sceneName} build index {buildIndex}");
+
+            LevelSelect.EnteredNewLevel(sceneName);
         }
 
         private void UpdateVersionName(string sceneName)

@@ -37,12 +37,18 @@ namespace ArchipelagoSignalis
             MelonLogger.Msg($"Appended scene name: {appendedSceneName}");
             currentScene = appendedSceneName;
             PlayerState playerState = new PlayerState();
+            
+            // Set gameState to play in order to not get stuck when cutscene does not load
+            // TODO: Check all possible cutscenes and states
+            if (SaveManagement.LevelsReached.Contains(appendedSceneName))
+            {
+                PlayerState.gameState = PlayerState.gameStates.play;
+            }
+
             if (intruderLevelNames.Contains(appendedSceneName))
             {
                 SaveManagement.UpdateLevelsReached(appendedSceneName);
-                CutsceneManager cutsceneManager = new CutsceneManager();
-                PlayerState.suspendInput = false;
-                PlayerState.cutscene = false;
+                UnlockPreviouslyUnlockedDoors();
             }
 
             GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
@@ -51,6 +57,21 @@ namespace ArchipelagoSignalis
                 if (gameObject.activeInHierarchy && null != gameObject.GetComponentByName("Room"))
                 {
                     MelonLogger.Msg($"Scene : {sceneName} : {gameObject.name}");
+                }
+            }
+        }
+
+        public static void UnlockPreviouslyUnlockedDoors()
+        {
+            ConnectedDoors[] doors = UnityEngine.Object.FindObjectsOfType<ConnectedDoors>();
+            foreach (ConnectedDoors door in doors)
+            {
+                MelonLogger.Msg($"Door : {door.name}");
+                MelonLogger.Msg($"DoorsUnlocked String : {SaveManagement.DoorsUnlocked}");
+                if (null != door.key && SaveManagement.DoorsUnlocked.Contains(door.key._item.ToString()))
+                {
+                    MelonLogger.Msg($"Unlocking door: {door.key._item.ToString()}");
+                    door.locked = false;
                 }
             }
         }
@@ -106,6 +127,16 @@ namespace ArchipelagoSignalis
                     RetrieveItem.AddItemToInventory(RetrieveItem.RetrieveItemQueue.Dequeue());
                 }
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(ConnectedDoors), "Unlock")]
+    public static class DetectDoorUnlock
+    {
+        private static void Postfix(ConnectedDoors __instance)
+        {
+            MelonLogger.Msg($"Door unlocked: {__instance.key._item.ToString()}");
+            SaveManagement.UpdateDoorsUnlocked(__instance.key._item.ToString());
         }
     }
 }

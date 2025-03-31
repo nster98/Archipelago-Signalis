@@ -13,6 +13,7 @@ namespace ArchipelagoSignalis
         public static string LevelsReached = "";
         public static string LocationsChecked = "";
         public static string ItemsReceived = "";
+        public static string DoorsUnlocked = "";
 
         public static void UpdateLocationsChecked(string itemName)
         {
@@ -53,19 +54,23 @@ namespace ArchipelagoSignalis
             MelonLogger.Msg($"Levels reached: {LevelsReached}");
         }
 
+        public static void UpdateDoorsUnlocked(string keyName)
+        {
+            if (DoorsUnlocked == "")
+            {
+                DoorsUnlocked = keyName;
+            }
+            else if (!DoorsUnlocked.Contains(keyName))
+            {
+                DoorsUnlocked += "," + keyName;
+            }
+            MelonLogger.Msg($"Doors unlocked: {DoorsUnlocked}");
+        }
+
         public static void ResetItemsReceived()
         {
             ItemsReceived = "";
             MelonLogger.Msg($"Items received reset :: {ItemsReceived}");
-        }
-
-        public static void ResetIntruderCutscene()
-        {
-            // LOV Opening Cutscene
-            SProgress.SetBool("cut LOV_Reeducation_c1006328-b9f7-40fc-aa0d-3fdd32fe3103", false);
-
-            // DET Opening Cutscene
-            SProgress.SetBool("cut DET_Detention_fbcdaacc-bae8-49da-ba35-ecf336a4ebfe", false);
         }
     }
 
@@ -79,8 +84,7 @@ namespace ArchipelagoSignalis
             SProgress.SetString("LocationsChecked", SaveManagement.LocationsChecked);
             SProgress.SetString("ItemsReceived", SaveManagement.ItemsReceived);
             SProgress.SetString("LevelsReached", SaveManagement.LevelsReached);
-
-            SaveManagement.ResetIntruderCutscene();
+            SProgress.SetString("DoorsUnlocked", SaveManagement.DoorsUnlocked);
         }
     }
 
@@ -96,15 +100,15 @@ namespace ArchipelagoSignalis
                 MelonLogger.Msg($"Key: {SProgress.progress.boolKeys[i]} | Value: {SProgress.progress.bools[i]}");
             }
 
-            // Reset cutscene boolean to ensure cutscene players after teleporting
-            SaveManagement.ResetIntruderCutscene();
-
             SaveManagement.LocationsChecked = SProgress.GetString("LocationsChecked", "");
             SaveManagement.ItemsReceived = SProgress.GetString("ItemsReceived", "");
             SaveManagement.LevelsReached = SProgress.GetString("LevelsReached", "");
+            SaveManagement.DoorsUnlocked = SProgress.GetString("DoorsUnlocked", "");
 
-            MelonLogger.Msg($"Loading game :: Items collected: {SaveManagement.LocationsChecked}");
-            MelonLogger.Msg($"Loading game :: Levels reached: {SaveManagement.LevelsReached}");
+            MelonLogger.Msg($"Loading game :: Locations Checked : {SaveManagement.LocationsChecked}");
+            MelonLogger.Msg($"Loading game :: Items Received : {SaveManagement.ItemsReceived}");
+            MelonLogger.Msg($"Loading game :: Doors Unlocked : {SaveManagement.DoorsUnlocked}");
+            MelonLogger.Msg($"Loading game :: Levels reached : {SaveManagement.LevelsReached}");
 
             Task.Run(ArchipelagoHelper.InitializeArchipelago);
         }
