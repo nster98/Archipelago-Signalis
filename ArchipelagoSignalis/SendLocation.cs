@@ -35,13 +35,22 @@ namespace ArchipelagoSignalis
             {
                 MelonLogger.Msg("Manually sending location Receive Photo of Alina to Archipelago");
                 SendCheckToArchipelago("AlinaPhoto");
-                RemoveItemFromInventory("AlinaPhoto");
+                RemoveItemFromInventory("AlinaPhoto", 1);
             }
         }
 
-        private static void RemoveItemFromInventory(string itemName)
+        private static void RemoveItemFromInventory(string itemName, int count)
         {
-            // TODO: Clear only a certain amount of ammo, health, etc.
+            // TODO: This is likely more efficient now that it will end up calling here but I don't want to test it
+            // foreach (AnItem item in InventoryManager.allItems.Values)
+            // {
+            //     if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+            //     {
+            //         InventoryManager.RemoveItem(item, count);
+            //         break;
+            //     }
+            // }
+            var itemCount = count;
             List<string> elsterItems = new List<string>();
             do
             {
@@ -59,7 +68,8 @@ namespace ArchipelagoSignalis
                     MelonLogger.Msg(item.key._item.ToString());
                     elsterItems.Add(item.key._item.ToString());
                 }
-            } while (elsterItems.Contains(itemName));
+                itemCount--;
+            } while (itemCount != 0);
         }
 
         [HarmonyPatch(typeof(ItemPickup), "release")]
@@ -86,7 +96,8 @@ namespace ArchipelagoSignalis
             {
                 var currentNumItemsInInventory = InventoryManager.elsterItems.Count;
                 var item = __instance._item;
-                if (currentNumItemsInInventory != numItemsInInventory)
+                if (currentNumItemsInInventory != numItemsInInventory
+                    || (currentNumItemsInInventory == numItemsInInventory && IsStackingItem(item._item.ToString())))
                 {
                     if (string.Equals(item._item.ToString(), "FalkeSpear", StringComparison.OrdinalIgnoreCase))
                     {
@@ -109,10 +120,10 @@ namespace ArchipelagoSignalis
                     MelonLogger.Msg($"isYellowKing {isYellowKing} : isDuplicateItem {isDuplicateItem} : locationChecked : {locationChecked} : locationInRightRoom : {locationInRightRoom}");
 
                     if (!isYellowKing
-                        || (isDuplicateItem && locationInRightRoom)
-                        || (!locationChecked && locationInRightRoom))
+                        && ((isDuplicateItem && locationInRightRoom)
+                            || (!locationChecked && locationInRightRoom)))
                     {
-                        RemoveItemFromInventory(item._item.ToString());
+                        RemoveItemFromInventory(item._item.ToString(), __instance.count);
                         MelonLogger.Msg($"Removed item {item._item} from inventory");
                     }
                     else if (string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase))
@@ -138,6 +149,14 @@ namespace ArchipelagoSignalis
                 var isAmmo = SaveManagement.ItemsReceived.Contains(item) && item.Contains("Ammo");
                 var isFlare = SaveManagement.ItemsReceived.Contains(item) && item.Contains("SignalFlare");
                 return SaveManagement.ItemsReceived.Contains(item) || (isHealth || isAmmo || isFlare);
+            }
+
+            private static bool IsStackingItem(string item)
+            {
+                var isHealth = (item.Contains("Health") || item.Contains("Injector"));
+                var isAmmo = item.Contains("Ammo");
+                var isFlare = item.Contains("SignalFlare");
+                return (isHealth || isAmmo || isFlare);
             }
         }
     }
