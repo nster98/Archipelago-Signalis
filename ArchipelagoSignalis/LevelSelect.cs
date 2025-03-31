@@ -36,9 +36,13 @@ namespace ArchipelagoSignalis
             var appendedSceneName = sceneName.Substring(0, 3);
             MelonLogger.Msg($"Appended scene name: {appendedSceneName}");
             currentScene = appendedSceneName;
+            PlayerState playerState = new PlayerState();
             if (intruderLevelNames.Contains(appendedSceneName))
             {
                 SaveManagement.UpdateLevelsReached(appendedSceneName);
+                CutsceneManager cutsceneManager = new CutsceneManager();
+                PlayerState.suspendInput = false;
+                PlayerState.cutscene = false;
             }
 
             GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();

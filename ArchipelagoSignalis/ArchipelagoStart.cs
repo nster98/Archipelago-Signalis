@@ -117,10 +117,21 @@ namespace ArchipelagoSignalis
 
         public static string GetArchipelagoItemNameFromLocation(string inGameName, string scene, string room)
         {
-            MelonLogger.Msg($"Looking for item mapping for {inGameName} in {scene} {room}");
-            var locationMapping = locationMappings.FirstOrDefault(im => im.InGameName == inGameName && im.Scene == scene && (string.IsNullOrEmpty(im.Room) || im.Room == room));
-            MelonLogger.Msg($"Found location mapping :: {locationMapping?.ArchipelagoItemName}");
-            return locationMapping?.ArchipelagoItemName;
+            try
+            {
+                MelonLogger.Msg($"Looking for item mapping for {inGameName} in {scene} {room}");
+                var locationMapping = locationMappings.FirstOrDefault(im =>
+                    im.InGameName == inGameName && im.Scene == scene &&
+                    (string.IsNullOrEmpty(im.Room) || im.Room == room));
+                MelonLogger.Msg($"Found location mapping :: {locationMapping?.ArchipelagoItemName}");
+                return locationMapping?.ArchipelagoItemName;
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Error($"Error in GetArchipelagoItemNameFromLocation: {ex}");
+                return "null";
+
+            }
         }
 
         public static string GetSignalisItemNameFromArchipelagoLocation(string archipelagoName)

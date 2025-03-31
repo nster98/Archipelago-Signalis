@@ -15,10 +15,10 @@ Service Hatch Key,ServiceKey,DET,
 East Wing Key,EastKey,DET,
 10mm Ammo (Worker Barracks - Office),PistolAmmo,DET,Office
 Disposable Stun Prod (Worker Barracks - Office),Taser,DET,Office
-Repair Patch (Worker Barracks - First Aid),Health25,DET,FirstAid
+Repair Patch (Worker Barracks - First Aid),Health25,DET,First Aid Room
 Plate of Eternity,PlateEternity,DET,
 Radio Module,Radio,DET,
-Identification Key,ElevatorKey,DET,
+Identification Key,ElevatorKey,DET,Office
 Repair Patch (Worker Barracks - Protektor Bathroom),Health25,DET,StaffBath
 10mm Ammo (Worker Barracks - Store Room),PistolAmmo,DET,StorageUnit
 Mensa Key,MensaKey,DET,
@@ -30,7 +30,7 @@ Disposable Stun Prod (Worker Barracks - Rationing Office),Taser,DET,Rationing
 "Broken Key, Top Half",BoneKeyA,DET,
 10mm Ammo (Worker Barracks - Lockers),PistolAmmo,DET,Lockers
 "Broken Key, Bottom Half",BoneKeyB,DET,
-Disposable Stun Prod (Worker Barracks - Registry),Taser,DET,Search
+Disposable Stun Prod (Worker Barracks - Registry),Taser,DET,Registration Office
 Repair Spray+ (Worker Barracks - Isolation),HealthFast,DET,Isolation
 Key of Love,KeyOfLove,DET,
 Shotgun,Shotgun,MED,

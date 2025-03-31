@@ -41,19 +41,25 @@ namespace ArchipelagoSignalis
 
         private static void RemoveItemFromInventory(string itemName)
         {
+            // TODO: Clear only a certain amount of ammo, health, etc.
             List<string> elsterItems = new List<string>();
-            foreach (var item in InventoryManager.elsterItems)
+            do
             {
-                elsterItems.Add(item.key._item.ToString());
-            }
-
-            foreach (AnItem item in InventoryManager.allItems.Values)
-            {
-                if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+                elsterItems.Clear();
+                MelonLogger.Msg($"Removing item {itemName} from inventory");
+                foreach (AnItem item in InventoryManager.allItems.Values)
                 {
-                    InventoryManager.RemoveItem(item);
+                    if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        InventoryManager.RemoveItem(item);
+                    }
                 }
-            }
+                foreach (var item in InventoryManager.elsterItems)
+                {
+                    MelonLogger.Msg(item.key._item.ToString());
+                    elsterItems.Add(item.key._item.ToString());
+                }
+            } while (elsterItems.Contains(itemName));
         }
 
         [HarmonyPatch(typeof(ItemPickup), "release")]
@@ -91,13 +97,25 @@ namespace ArchipelagoSignalis
                         return;
                     }
 
-                    if (!string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase)
-                        || CheckForDuplicateItem(item._item.ToString()))
+                    var archipelagoLocation = ArchipelagoStart.GetArchipelagoItemNameFromLocation(
+                        item._item.ToString(),
+                        LevelSelect.currentScene,
+                        PlayerState.currentRoom.roomName);
+                    var isYellowKing = string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase);
+                    var isDuplicateItem = CheckForDuplicateItem(item._item.ToString());
+                    var locationChecked = SaveManagement.LocationsChecked.Contains(archipelagoLocation);
+                    var locationInRightRoom = !archipelagoLocation.Equals("null");
+
+                    MelonLogger.Msg($"isYellowKing {isYellowKing} : isDuplicateItem {isDuplicateItem} : locationChecked : {locationChecked} : locationInRightRoom : {locationInRightRoom}");
+
+                    if (!isYellowKing
+                        || (isDuplicateItem && locationInRightRoom)
+                        || (!locationChecked && locationInRightRoom))
                     {
-                        InventoryManager.RemoveItem(item);
+                        RemoveItemFromInventory(item._item.ToString());
                         MelonLogger.Msg($"Removed item {item._item} from inventory");
                     }
-                    else
+                    else if (string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase))
                     {
                         MelonLogger.Msg("Yellow King location checked, storing all items");
                         InventoryManager.storeAllItems();
@@ -105,13 +123,8 @@ namespace ArchipelagoSignalis
                         // TODO: Add all items to inventory EXCEPT yellow king
                     }
 
-
                     var fullItemName = item._item.ToString();
                     var playerState = PlayerState.currentRoom;
-                    if (fullItemName.Contains("Ammo") || fullItemName.Contains("Health") || fullItemName.Contains("Injector"))
-                    {
-                        fullItemName += "_" + playerState.roomName;
-                    }
 
                     SendCheckToArchipelago(fullItemName);
                     ArchipelagoHelper.Session.DataStorage[Scope.Slot, "LastItemSent"] = fullItemName;
@@ -121,10 +134,10 @@ namespace ArchipelagoSignalis
 
             private static bool CheckForDuplicateItem(string item)
             {
-                var isHealth = item.Contains("Health") || item.Contains("Injector");
-                var isAmmo = item.Contains("Ammo");
-                var isFlare = item.Contains("SignalFlare");
-                return !SaveManagement.ItemsReceived.Contains(item) || (isHealth || isAmmo || isFlare);
+                var isHealth = SaveManagement.ItemsReceived.Contains(item) && (item.Contains("Health") || item.Contains("Injector"));
+                var isAmmo = SaveManagement.ItemsReceived.Contains(item) && item.Contains("Ammo");
+                var isFlare = SaveManagement.ItemsReceived.Contains(item) && item.Contains("SignalFlare");
+                return SaveManagement.ItemsReceived.Contains(item) || (isHealth || isAmmo || isFlare);
             }
         }
     }
