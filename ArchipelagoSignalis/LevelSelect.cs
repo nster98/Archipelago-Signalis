@@ -14,8 +14,10 @@ namespace ArchipelagoSignalis
     {
         private static List<string> intruderLevelNames = ["PEN", "LOV", "DET", "MED", "RES", "EXC", "LAB", "MEM", "BIO", "ROT", "END", "TEST"];
         private static bool isDebug = true;
+        private static List<string> doorsLockedList = new List<string>();
         public static bool isInventoryOpen = false;
         public static string currentScene = "";
+        
 
         public static void OpenIntruderLevelSelect()
         {
@@ -64,14 +66,35 @@ namespace ArchipelagoSignalis
         public static void UnlockPreviouslyUnlockedDoors()
         {
             ConnectedDoors[] doors = UnityEngine.Object.FindObjectsOfType<ConnectedDoors>();
+            doorsLockedList = new List<string>();
             foreach (ConnectedDoors door in doors)
             {
                 MelonLogger.Msg($"Door : {door.name}");
                 MelonLogger.Msg($"DoorsUnlocked String : {SaveManagement.DoorsUnlocked}");
-                if (null != door.key && SaveManagement.DoorsUnlocked.Contains(door.key._item.ToString()))
+                if (null != door.key)
                 {
-                    MelonLogger.Msg($"Unlocking door: {door.key._item.ToString()}");
-                    door.locked = false;
+                    doorsLockedList.Add(door.key._item.ToString());
+
+                    if (SaveManagement.DoorsUnlocked.Contains(door.key._item.ToString()))
+                    {
+                        MelonLogger.Msg($"Unlocking door: {door.key._item.ToString()}");
+                        door.locked = false;
+                    }
+                }
+            }
+        }
+
+        public static void TrackUnlockedDoors()
+        {
+            // Use array to track which doors are still locked
+            // When they become unlocked, remove it from the list and add it to the save list
+            ConnectedDoors[] doors = UnityEngine.Object.FindObjectsOfType<ConnectedDoors>();
+            foreach (ConnectedDoors door in doors)
+            {
+                if (null != door.key && !door.locked && doorsLockedList.Contains(door.key._item.ToString()))
+                {
+                    doorsLockedList.Remove(door.key._item.ToString());
+                    SaveManagement.UpdateDoorsUnlocked(door.key._item.ToString());
                 }
             }
         }
@@ -127,16 +150,6 @@ namespace ArchipelagoSignalis
                     RetrieveItem.AddItemToInventory(RetrieveItem.RetrieveItemQueue.Dequeue());
                 }
             }
-        }
-    }
-
-    [HarmonyPatch(typeof(ConnectedDoors), "Unlock")]
-    public static class DetectDoorUnlock
-    {
-        private static void Postfix(ConnectedDoors __instance)
-        {
-            MelonLogger.Msg($"Door unlocked: {__instance.key._item.ToString()}");
-            SaveManagement.UpdateDoorsUnlocked(__instance.key._item.ToString());
         }
     }
 }

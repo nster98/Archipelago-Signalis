@@ -22,8 +22,8 @@ Identification Key,ElevatorKey,DET,Office,
 Repair Patch (Worker Barracks - Protektor Bathroom),Health25,DET,StaffBath,
 10mm Ammo (Worker Barracks - Store Room),PistolAmmo,DET,StorageUnit,
 Mensa Key,MensaKey,DET,,
-"10mm Ammo (Worker Barracks - Mensa, Top of Room)",PistolAmmo,DET,Mensa,
-"10mm Ammo (Worker Barracks - Mensa, Bottom of Room)",PistolAmmo,DET,Mensa,
+"10mm Ammo (Worker Barracks - Mensa, Top of Room)",PistolAmmo,DET,Mensa,1265.61
+"10mm Ammo (Worker Barracks - Mensa, Bottom of Room)",PistolAmmo,DET,Mensa,1273.24
 Repair Patch (Worker Barracks - Mensa),Health25,DET,Mensa,
 West Wing Key,ShowerKey,DET,,
 Disposable Stun Prod (Worker Barracks - Rationing Office),Taser,DET,Rationing,

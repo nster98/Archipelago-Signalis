@@ -171,6 +171,7 @@ namespace ArchipelagoSignalis
         {
             QualityOfLife.OpenStorageBoxFromAnywhereListener();
             LevelSelect.OpenIntruderLevelSelect();
+            LevelSelect.TrackUnlockedDoors();
             RetrieveItem.CheckForF9KeyPress();
             RetrieveItem.GiveRadio();
 
