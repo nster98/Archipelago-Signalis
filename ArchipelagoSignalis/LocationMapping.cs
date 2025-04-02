@@ -12,5 +12,6 @@ namespace ArchipelagoSignalis
         public string InGameName { get; set; }
         public string Scene { get; set; }
         public string Room { get; set; }
+        public string Position { get; set; }
     }
 }

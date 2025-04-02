@@ -11,9 +11,9 @@ namespace ArchipelagoSignalis
 {
     class SendLocation : MelonMod
     {
-        public static void SendCheckToArchipelago(string itemName)
+        public static void SendCheckToArchipelago(string itemName, string position)
         {
-            var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemNameFromLocation(itemName, LevelSelect.currentScene, PlayerState.currentRoom.roomName);
+            var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemNameFromLocation(itemName, LevelSelect.currentScene, PlayerState.currentRoom.roomName, position);
             SaveManagement.UpdateLocationsChecked(translatedArchipelagoItemName);
 
             if (null != ArchipelagoHelper.Session && ArchipelagoHelper.Session.Socket.Connected)
@@ -34,7 +34,7 @@ namespace ArchipelagoSignalis
             if (sceneName.Contains("LOV") && !SaveManagement.LocationsChecked.Contains("Receive Photo of Alina"))
             {
                 MelonLogger.Msg("Manually sending location Receive Photo of Alina to Archipelago");
-                SendCheckToArchipelago("AlinaPhoto");
+                SendCheckToArchipelago("AlinaPhoto", "");
                 RemoveItemFromInventory("AlinaPhoto", 1);
             }
         }
@@ -83,6 +83,8 @@ namespace ArchipelagoSignalis
                 var item = __instance._item;
                 var playerState = PlayerState.currentRoom;
 
+                MelonLogger.Msg($"Position: {__instance.gameObject.transform.position.x} {__instance.gameObject.transform.position.y}");
+
                 // Infinite pickups in Mynah Arena to avoid softlock
                 if (playerState.roomName == "Surgery Mynah")
                 {
@@ -96,6 +98,7 @@ namespace ArchipelagoSignalis
             {
                 var currentNumItemsInInventory = InventoryManager.elsterItems.Count;
                 var item = __instance._item;
+                var positionX = __instance.gameObject.transform.position.x.ToString();
                 if (currentNumItemsInInventory != numItemsInInventory
                     || (currentNumItemsInInventory == numItemsInInventory && IsStackingItem(item._item.ToString())))
                 {
@@ -111,7 +114,8 @@ namespace ArchipelagoSignalis
                     var archipelagoLocation = ArchipelagoStart.GetArchipelagoItemNameFromLocation(
                         item._item.ToString(),
                         LevelSelect.currentScene,
-                        PlayerState.currentRoom.roomName);
+                        PlayerState.currentRoom.roomName,
+                        positionX);
                     var isYellowKing = string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase);
                     var isDuplicateItem = CheckForDuplicateItem(item._item.ToString());
                     var locationChecked = SaveManagement.LocationsChecked.Contains(archipelagoLocation);
@@ -137,7 +141,7 @@ namespace ArchipelagoSignalis
                     var fullItemName = item._item.ToString();
                     var playerState = PlayerState.currentRoom;
 
-                    SendCheckToArchipelago(fullItemName);
+                    SendCheckToArchipelago(fullItemName, positionX);
                     ArchipelagoHelper.Session.DataStorage[Scope.Slot, "LastItemSent"] = fullItemName;
                 }
 

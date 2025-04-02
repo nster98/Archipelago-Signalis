@@ -120,7 +120,7 @@ namespace ArchipelagoSignalis
                 foreach (var itemToSend in itemsToSend)
                 {
                     MelonLogger.Msg($"Sending item {itemToSend} to Archipelago");
-                    SendLocation.SendCheckToArchipelago(itemToSend);
+                    SendLocation.SendCheckToArchipelago(itemToSend, "");
                 }
             }
             

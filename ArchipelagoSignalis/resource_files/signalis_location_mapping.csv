@@ -1,219 +1,219 @@
-Archipelago Item Name,InGame Name,Scene,Room
-Photo of Ariane,ArianePhoto,PEN,
-Adhesive Tape (Penrose),Tape,PEN,
-Broken Airlock Key,BrokenKey,PEN,
-The King in Yellow,YellowKing,PEN,
-Receiptionist Key,SurfaceKey,LOV,
-Protektor Key,ObservationKey,LOV,
-Pistol,Pistol,LOV,
-Aperture Card,MicroFiche,LOV,
-Classroom Key (Installation AEON),ClassRoomKey,LOV,
-Repair Patch (Installation AEON - Aula),Health25,LOV,Aula
-10mm Ammo (Installation AEON - Aula),PistolAmmo,LOV,Aula
-Receive Photo of Alina,AlinaPhoto,LOV,
-Service Hatch Key,ServiceKey,DET,
-East Wing Key,EastKey,DET,
-10mm Ammo (Worker Barracks - Office),PistolAmmo,DET,Office
-Disposable Stun Prod (Worker Barracks - Office),Taser,DET,Office
-Repair Patch (Worker Barracks - First Aid),Health25,DET,First Aid Room
-Plate of Eternity,PlateEternity,DET,
-Radio Module,Radio,DET,
-Identification Key,ElevatorKey,DET,Office
-Repair Patch (Worker Barracks - Protektor Bathroom),Health25,DET,StaffBath
-10mm Ammo (Worker Barracks - Store Room),PistolAmmo,DET,StorageUnit
-Mensa Key,MensaKey,DET,
-"10mm Ammo (Worker Barracks - Mensa, Top of Room)",PistolAmmo,DET,Mensa
-"10mm Ammo (Worker Barracks - Mensa, Bottom of Room)",PistolAmmo,DET,Mensa
-Repair Patch (Worker Barracks - Mensa),Health25,DET,Mensa
-West Wing Key,ShowerKey,DET,
-Disposable Stun Prod (Worker Barracks - Rationing Office),Taser,DET,Rationing
-"Broken Key, Top Half",BoneKeyA,DET,
-10mm Ammo (Worker Barracks - Lockers),PistolAmmo,DET,Lockers
-"Broken Key, Bottom Half",BoneKeyB,DET,
-Disposable Stun Prod (Worker Barracks - Registry),Taser,DET,Registration Office
-Repair Spray+ (Worker Barracks - Isolation),HealthFast,DET,Isolation
-Key of Love,KeyOfLove,DET,
-Shotgun,Shotgun,MED,
-"Shotgun Rounds (Hospital Wing - HDU 02, Northwest)",ShotgunAmmo,MED,HDU 2
-"Shotgun Rounds (Hospital Wing - HDU 02, Southwest)",ShotgunAmmo,MED,HDU 2
-Shotgun Rounds (Hospital Wing - Morgue),ShotgunAmmo,MED,Morgue
-Pump Room Key,PumpKey,MED,
-Repair Spray (Hospital Wing - Store Room),Health50,MED,Upper Store Room
-Repair Spray (Hospital Wing - HDU 02),Health50,MED,HDU 2
-Socket Wrench Handle,SocketHandle,MED,
-Autoinjector (Hospital Wing - ICU 01),Injector,MED,ICU 1
-10mm Ammo (Hospital Wing - HDU 02),PistolAmmo,MED,HDU 2
-Repair Patch (Hospital Wing - HDU 02),Health25,MED,HDU 2
-Disposable Stun Prod (Hospital Wing - Nurse Station),Taser,MED,Nurse Station
-Eidetic Module,PhotoModule,MED,
-Incinerator Key,IncineratorKey,MED,
-Gold Key,KeyOfGold,MED,
-Disposable Stun Prod (Hospital Wing - Pump Room),Taser,MED,Pump Room
-Disposable Stun Prod (Hospital Wing - Flooded Office),Taser,MED,Flooded Office (Save Room)
-Water Key,KeyOfWater,MED,
-Repair Patch (Hospital Wing - Flooded Bathroom),Health25,MED,Flooded Bathroom
-10mm Ammo (Hospital Wing - Flooded Store Room),PistolAmmo,MED,Flooded Store Room
-10mm Ammo (Hospital Wing - Sleeping Ward),PistolAmmo,MED,Sleeping Ward
-Blank Key,KeyOfBlank,MED,
-Examination Room Key,ExamKey,MED,
-Video Cassette,VCR,MED,
-12mm Ammo (Hospital Wing - Sleeping Ward),RevolverAmmo,MED,Sleeping Ward
-Air Key,KeyOfAir,MED,
-Autoinjector (Hospital Wing - Exam Room),Injector,MED,Exam Room
-10mm Socket,Socket10mm,MED,
-Thermite Flare (Hospital Wing - Incinerator Room),SignalFlare,MED,Incinerator
-Fire Key,KeyOfFire,MED,
-10mm Ammo (Hospital Wing - Surgery),PistolAmmo,MED,Surgery Prep (Save Room)
-Maintenance Key,FloodOverflowKey,RES,
-Thermite Flare (Protektor Levels - Maintenance Office),SignalFlare,RES,Maintenance Office (Save Room)
-10mm Ammo (Protektor Levels - Cleaning Room Hallway),PistolAmmo,RES,6F E Corridor
-"12mm Ammo (Protektor Levels - STCR Dorm, 6th Floor)",RevolverAmmo,RES,STCR Dorm (Music Hater)
-Repair Patch (Protektor Levels - Cleaning Room),Health25,RES,STCR Dorm (Music Hater)
-Autoinjector (Protektor Levels - Cleaning Room),Injector,RES,STCR Dorm (Music Hater)
-Repair Patch (Protektor Levels - Cleaning Room Hallway),Health25,RES,6F E Corridor
-Repair Patch (Protektor Levels - Workshop Hallway),Health25,RES,6F S Corridor
-Disposable Stun Prod (Protektor Levels - ARAR Dorm),Taser,RES,ARAR Dorm (Boat Room)
-10mm Ammo (Protektor Levels - ARAR Dorm),PistolAmmo,RES,ARAR Dorm (Boat Room)
-Shotgun Rounds (Protektor Levels - ARAR Dorm),ShotgunAmmo,RES,ARAR Dorm (Boat Room)
-Repair Spray (Protektor Levels - South STAR Dorm),Health50,RES,STAR Dorm South
-Autoinjector (Protektor Levels - South STAR Dorm),Injector,RES,STAR Dorm South
-Shotgun Rounds (Protektor Levels - Dining Room Hallway),ShotgunAmmo,RES,7F S Corridor
-10mm Ammo (Protektor Levels - Dining Room Hallway),PistolAmmo,RES,7F S Corridor
-10mm Ammo (Protektor Levels - Dining Room),PistolAmmo,RES,Common Room
-Fuse,ElevatorFuse,RES,
-10mm Ammo (Protektor Levels - East STAR Dorm),PistolAmmo,RES,STAR Dorm North
-Shutter Gate Handle,ShutterHandle,RES,
-Repair Spray+ (Protektor Levels - FKLR Bedroom),HealthFast,RES,Falkes Bedroom
-Disposable Stun Prod (Protektor Levels - FKLR Bedroom),Taser,RES,Falkes Bedroom
-10mm Ammo (Protektor Levels - FKLR Bedroom),PistolAmmo,RES,Falkes Bedroom
-Flashlight Module,Flashlight,RES,
-Astrolabe,ShrineDial,RES,
-Repair Spray (Protektor Levels - Library),Health50,RES,Library
-Hummingbird Key,KolbiriKey,RES,
-Disposable Stun Prod (Protektor Levels - KLBR Study),Taser,RES,Kolibris Study
-Eagle Key,AdlersKey,RES,
-Autoinjector (Protektor Levels - Repair Bay),Injector,RES,Repair Bay
-Shotgun Rounds (Protektor Levels - Shooting Range),ShotgunAmmo,RES,Shooting Range
-12mm Ammo (Protektor Levels - Shooting Range),RevolverAmmo,RES,Shooting Range
-Weapon Case,ShotgunCase,RES,
-Island Key,PaintingKey,RES,
-10mm Ammo (Protektor Levels - Protektor Archive),PistolAmmo,RES,Protektor Archive
-Hunter's Key,ShotgunCaseKey,RES,
-Adhesive Tape (Protektor Levels),Tape,RES,
-Shotgun Rounds (Protektor Levels - ADLR Bedroom),ShotgunAmmo,RES,Adlers Bedroom
-"Shotgun Rounds (Protektor Levels - STCR Dorm, 8th Floor)",ShotgunAmmo,RES,STCR/KNCR Dorm
-"Repair Spray+ (Protektor Levels - STCR Dorm, 8th Floor)",HealthFast,RES,STCR/KNCR Dorm
-"10mm Ammo (Protektor Levels - STCR Dorm, 8th Floor)",PistolAmmo,RES,STCR/KNCR Dorm
-"Repair Spray (Protektor Levels - STCR Dorm, 8th Floor)",Health50,RES,STCR/KNCR Dorm
-"12mm Ammo (Protektor Levels - STCR Dorm, 8th Floor)",RevolverAmmo,RES,STCR/KNCR Dorm
-Key of Eternity,KeyOfEternity,RES,
-Shotgun Rounds (Protektor Levels - KLBR Bedroom),ShotgunAmmo,RES,Kolibris Bedroom
-Postbox Key,PostboxKey,RES,
-Administrator's Key,MasterKey,RES,
-Owl Key,OwlKey,RES,
-Disposable Stun Prod (Protektor Levels - EULR Dorm),Taser,RES,EULR Dorm (Music Lover)
-Broken Music Cassette,MuscCassetteBroken,RES,
-Workshop Key,WorkshopKey,RES,
-12mm Ammo (Protektor Levels - Workshop),RevolverAmmo,RES,Workshop
-10mm Ammo (Protektor Levels - Workshop),PistolAmmo,RES,Workshop
-Library Key,LibraryKey,RES,
-Nitro Express Ammo (Mineshaft - Wire Room),RifleAmmo,EXC,Monowire
-Repair Spray (Mineshaft - Save Room),Health50,EXC,Office (Save Room)
-Flare Gun,FlareGun,EXC,
-Signal Flare Shells (Mineshaft - Save Room),FlareGunAmmo,EXC,Office (Save Room)
-Repair Spray (Mineshaft - STAR/EULR Room),Health50,EXC,Star Room
-12mm Ammo (Mineshaft - STAR/EULR Room),RevolverAmmo,EXC,Star Room
-10mm Ammo (Mineshaft - STAR/EULR Room),PistolAmmo,EXC,Star Room
-Repair Spray (Mineshaft - Hatch Room),Health50,EXC,Hatch Room
-10mm Ammo (Mineshaft - Hole Room),PistolAmmo,EXC,The Hole
-Repair Spray (Mineshaft - Hole Room),Health50,EXC,The Hole
-Repair Spray (Nowhere - Morgue),Health50,LAB,Morgue Holes
-Autoinjector (Nowhere - Altar),Injector,LAB,Shrine Room
-10mm Ammo (Nowhere - Operating Room),PistolAmmo,LAB,OBGYN
-12mm Ammo (Nowhere - Operating Room),RevolverAmmo,LAB,OBGYN
-Disposable Stun Prod (Nowhere - Blood Tub Room),Taser,LAB,Nursery
-Large Wooden Doll,Doll_B,LAB,
-Repair Patch (Nowhere - Flesh Hole),Health25,LAB,Hole
-Nitro Express Ammo (Nowhere - Microphone Room),RifleAmmo,LAB,Pattern Viewer
-Wedding Ring,RingBride,LAB,
-Thermite Flare (Nowhere - Save Room After Chimera Boss),SignalFlare,LAB,Bedroom (Save Room)
-10mm Ammo (Nowhere - Save Room After Chimera Boss),PistolAmmo,LAB,Bedroom (Save Room)
-Repair Patch (Nowhere - Cage Piles #1),Health25,LAB,Cage Room
-Disposable Stun Rod (Nowhere - Cage Piles #1),Taser,LAB,Cage Room
-Signal Flare Shells (Nowhere - Red Ladder Up),FlareGunAmmo,LAB,Meat Ladder Room
-Repair Spray+ (Nowhere - Tentacle Room),HealthFast,LAB,Mid Ladder Room
-Regent's Ring,RingRegent,LAB,
-Small Bottle,Salts,LAB,
-Repair Spray (Nowhere - Barbwire Room #1),Health50,LAB,Flesh
-Plate of Flesh,PlateFlesh,LAB,
-Rusted Key,RustedKey,LAB,
-Serpent Ring,RingSerpent,LAB,
-Shotgun Rounds (Nowhere - Dark Hall),ShotgunAmmo,LAB,Glass Cage Room
-10mm Ammo (Nowhere - Cage Piles #2),PistolAmmo,LAB,Carcass Hall
-Nitro Express Ammo (Nowhere - Cage Piles #2),RifleAmmo,LAB,Carcass Hall
-Signal Flare Shells (Nowhere - Crowded Room),FlareGunAmmo,LAB,Surgery
-Small Wooden Doll,Doll_S,LAB,
-Shotgun Rounds (Nowhere - Crowded Room),ShotgunAmmo,LAB,Surgery
-Repair Spray+ (Nowhere - Hummingbird Corridor),HealthFast,LAB,Loop Hall
-Shotgun Rounds (Nowhere - Hummingbird Corridor),ShotgunAmmo,LAB,Loop Hall
-Grenade Shells (Nowhere - Lamp Room),FlakGunAmmo,LAB,Radio Room
-Incense,Incense,LAB,
-10mm Ammo (Nowhere - Empress Room),PistolAmmo,LAB,Chapel
-Plate of Balance,PlateBalance,LAB,
-Plate of Knowledge,PlateKnowledge,LAB,
-12mm Ammo (Nowhere - Interrogation Room),RevolverAmmo,LAB,Torture Room
-Wooden Doll,Doll_M,LAB,
-Grenade Shells (Nowhere - Interrogation Room),FlakGunAmmo,LAB,Torture Room
-Repair Spray (Nowhere - Barbwire Room #2),Health50,LAB,Sacrifice
-Plate of Sacrifice,PlateSacrifice,LAB,
-Plate of Love,PlateLove,LAB,
-Grenade Shells (Corrupted Installation Aeon - Classroom 4B),FlakGunAmmo,BIO,SafeClassroom
-Classroom Key (Corrupted Installation Aeon),ClassroomKey,BIO,
-Thermite Flare (Rotfront - Blockwart Bedroom),SignalFlare,ROT,Blockwart Bedroom (Save Room)
-Repair Patch (Rotfront - Blockwart Bedroom),Health25,ROT,Blockwart Bedroom (Save Room)
-Submachine Gun,SMG,ROT,
-8mm Ammo (Rotfront - Blockwart Office),SmgAmmo,ROT,Blockwart Office
-Grenade Shells (Rotfront - Ruined Apartment),FlakGunAmmo,ROT,Train Apartment
-Shotgun Rounds (Rotfront - Ruined Apartment),ShotgunAmmo,ROT,Train Apartment
-10mm Ammo (Rotfront - Dormitory),PistolAmmo,ROT,Student Dorm
-Repair Spray (Rotfront - Dormitory),Health50,ROT,Student Dorm
-Repair Spray (Rotfront - Apartment North of Blue Hallway),Health50,ROT,Worker Apartment
-12mm Ammo (Rotfront - Apartment North of Blue Hallway),RevolverAmmo,ROT,Worker Apartment
-Handwheel,ValveHandwheel,ROT,
-Nitro Express Ammo (Rotfront - Apartment North of Blue Hallway),RifleAmmo,ROT,Worker Apartment
-Developing Tank,DeveloperBox,ROT,
-Repair Spray+ (Rotfront - Atrium),HealthFast,ROT,Lobby Gallery
-Signal Flare Shells (Rotfront - Hospital Hallway),FlareGunAmmo,ROT,Hospital Hallway
-Autoinjector (Rotfront - Hospital Room),Injector,ROT,Hospital Room
-Store Key,StoreKey,ROT,
-Star,TarotStar,ROT,
-12mm Ammo (Rotfront - Garbage Chute),RevolverAmmo,ROT,Garbage Chute (Down)
-Blue Diskette,DiskBlue,ROT,
-Acetone,Turpentine,ROT,
-Disposable Stun Prod (Rotfront - Meat Grinder),Taser,ROT,Meat Grinder
-Repair Spray (Rotfront - Public House),Health50,ROT,Butcher Store
-8mm Ammo (Rotfront - Public House),SmgAmmo,ROT,Butcher Store
-Shotgun Rounds (Rotfront - Public House),ShotgunAmmo,ROT,Butcher Store
-Tower,TarotTower,ROT,
-10mm Ammo (Rotfront - Metro Platform),PistolAmmo,ROT,Metro Station
-Disposable Stun Prod (Rotfront - Metro Platform),Taser,ROT,Metro Station
-Repair Spray (Rotfront - Computer Store),Health50,ROT,Computer Store (Save Room)
-Patient Key,MeatKey,ROT,
-12mm Ammo (Rotfront - Fire Escape),RevolverAmmo,ROT,Fire Ladder (Down)
-Disposable Stun Prod (Rotfront - Apartment North of Alley),Taser,ROT,Tooth Apartment
-Repair Spray (Rotfront - Apartment North of Alley),Health50,ROT,Tooth Apartment
-Thermite Flare (Rotfront - Butterfly Room),SignalFlare,ROT,Butterfly Apartment
-Nitro Express Ammo (Rotfront - Butterfly Room),RifleAmmo,ROT,Butterfly Apartment
-Shotgun Rounds (Rotfront - Dentist Room),ShotgunAmmo,ROT,Dentist Office
-Repair Patch (Rotfront - Dentist Room),Health25,ROT,Dentist Office
-Red Diskette,DiskRed,ROT,
-8mm Ammo (Rotfront - Dentist Room),SmgAmmo,ROT,Dentist Office
-Moon,TarotMoon,ROT,
-8mm Ammo (Rotfront - Photo Store),SmgAmmo,ROT,Photo Store
-Developer Fluid,DeveloperFluid,ROT,
-Sun,TarotSun,ROT,
-Death,TarotDeath,ROT,
-Autoinjector (Rotfront - Book Store),Injector,ROT,Book Store
-Key of Sacrifice,KeyOfSacrifice,ROT,
-Lovers,TarotLovers,ROT,
-Dial,MoonRing,ROT,
+Archipelago Item Name,InGame Name,Scene,Room,Position
+Photo of Ariane,ArianePhoto,PEN,,
+Adhesive Tape (Penrose),Tape,PEN,,
+Broken Airlock Key,BrokenKey,PEN,,
+The King in Yellow,YellowKing,PEN,,
+Receiptionist Key,SurfaceKey,LOV,,
+Protektor Key,ObservationKey,LOV,,
+Pistol,Pistol,LOV,,
+Aperture Card,MicroFiche,LOV,,
+Classroom Key (Installation AEON),ClassRoomKey,LOV,,
+Repair Patch (Installation AEON - Aula),Health25,LOV,Aula,
+10mm Ammo (Installation AEON - Aula),PistolAmmo,LOV,Aula,
+Receive Photo of Alina,AlinaPhoto,LOV,,
+Service Hatch Key,ServiceKey,DET,,
+East Wing Key,EastKey,DET,,
+10mm Ammo (Worker Barracks - Office),PistolAmmo,DET,Office,
+Disposable Stun Prod (Worker Barracks - Office),Taser,DET,Office,
+Repair Patch (Worker Barracks - First Aid),Health25,DET,First Aid Room,
+Plate of Eternity,PlateEternity,DET,,
+Radio Module,Radio,DET,,
+Identification Key,ElevatorKey,DET,Office,
+Repair Patch (Worker Barracks - Protektor Bathroom),Health25,DET,StaffBath,
+10mm Ammo (Worker Barracks - Store Room),PistolAmmo,DET,StorageUnit,
+Mensa Key,MensaKey,DET,,
+"10mm Ammo (Worker Barracks - Mensa, Top of Room)",PistolAmmo,DET,Mensa,
+"10mm Ammo (Worker Barracks - Mensa, Bottom of Room)",PistolAmmo,DET,Mensa,
+Repair Patch (Worker Barracks - Mensa),Health25,DET,Mensa,
+West Wing Key,ShowerKey,DET,,
+Disposable Stun Prod (Worker Barracks - Rationing Office),Taser,DET,Rationing,
+"Broken Key, Top Half",BoneKeyA,DET,,
+10mm Ammo (Worker Barracks - Lockers),PistolAmmo,DET,Lockers,
+"Broken Key, Bottom Half",BoneKeyB,DET,,
+Disposable Stun Prod (Worker Barracks - Registry),Taser,DET,Registration Office,
+Repair Spray+ (Worker Barracks - Isolation),HealthFast,DET,Isolation,
+Key of Love,KeyOfLove,DET,,
+Shotgun,Shotgun,MED,,
+"Shotgun Rounds (Hospital Wing - HDU 02, Northwest)",ShotgunAmmo,MED,HDU 2,468.48
+"Shotgun Rounds (Hospital Wing - HDU 02, Southwest)",ShotgunAmmo,MED,HDU 2,468.93
+Shotgun Rounds (Hospital Wing - Morgue),ShotgunAmmo,MED,Morgue,
+Pump Room Key,PumpKey,MED,,
+Repair Spray (Hospital Wing - Store Room),Health50,MED,Upper Store Room,
+Repair Spray (Hospital Wing - HDU 02),Health50,MED,HDU 2,
+Socket Wrench Handle,SocketHandle,MED,,
+Autoinjector (Hospital Wing - ICU 01),Injector,MED,ICU 1,
+10mm Ammo (Hospital Wing - HDU 02),PistolAmmo,MED,HDU 2,
+Repair Patch (Hospital Wing - HDU 02),Health25,MED,HDU 2,
+Disposable Stun Prod (Hospital Wing - Nurse Station),Taser,MED,Nurse Station,
+Eidetic Module,PhotoModule,MED,,
+Incinerator Key,IncineratorKey,MED,,
+Gold Key,KeyOfGold,MED,,
+Disposable Stun Prod (Hospital Wing - Pump Room),Taser,MED,Pump Room,
+Disposable Stun Prod (Hospital Wing - Flooded Office),Taser,MED,Flooded Office (Save Room),
+Water Key,KeyOfWater,MED,,
+Repair Patch (Hospital Wing - Flooded Bathroom),Health25,MED,Flooded Bathroom,
+10mm Ammo (Hospital Wing - Flooded Store Room),PistolAmmo,MED,Flooded Store Room,
+10mm Ammo (Hospital Wing - Sleeping Ward),PistolAmmo,MED,Sleeping Ward,
+Blank Key,KeyOfBlank,MED,,
+Examination Room Key,ExamKey,MED,,
+Video Cassette,VCR,MED,,
+12mm Ammo (Hospital Wing - Sleeping Ward),RevolverAmmo,MED,Sleeping Ward,
+Air Key,KeyOfAir,MED,,
+Autoinjector (Hospital Wing - Exam Room),Injector,MED,Exam Room,
+10mm Socket,Socket10mm,MED,,
+Thermite Flare (Hospital Wing - Incinerator Room),SignalFlare,MED,Incinerator,
+Fire Key,KeyOfFire,MED,,
+10mm Ammo (Hospital Wing - Surgery),PistolAmmo,MED,Surgery Prep (Save Room),
+Maintenance Key,FloodOverflowKey,RES,,
+Thermite Flare (Protektor Levels - Maintenance Office),SignalFlare,RES,Maintenance Office (Save Room),
+10mm Ammo (Protektor Levels - Cleaning Room Hallway),PistolAmmo,RES,6F E Corridor,
+"12mm Ammo (Protektor Levels - STCR Dorm, 6th Floor)",RevolverAmmo,RES,STCR Dorm (Music Hater),
+Repair Patch (Protektor Levels - Cleaning Room),Health25,RES,STCR Dorm (Music Hater),
+Autoinjector (Protektor Levels - Cleaning Room),Injector,RES,STCR Dorm (Music Hater),
+Repair Patch (Protektor Levels - Cleaning Room Hallway),Health25,RES,6F E Corridor,
+Repair Patch (Protektor Levels - Workshop Hallway),Health25,RES,6F S Corridor,
+Disposable Stun Prod (Protektor Levels - ARAR Dorm),Taser,RES,ARAR Dorm (Boat Room),
+10mm Ammo (Protektor Levels - ARAR Dorm),PistolAmmo,RES,ARAR Dorm (Boat Room),
+Shotgun Rounds (Protektor Levels - ARAR Dorm),ShotgunAmmo,RES,ARAR Dorm (Boat Room),
+Repair Spray (Protektor Levels - South STAR Dorm),Health50,RES,STAR Dorm South,
+Autoinjector (Protektor Levels - South STAR Dorm),Injector,RES,STAR Dorm South,
+Shotgun Rounds (Protektor Levels - Dining Room Hallway),ShotgunAmmo,RES,7F S Corridor,
+10mm Ammo (Protektor Levels - Dining Room Hallway),PistolAmmo,RES,7F S Corridor,
+10mm Ammo (Protektor Levels - Dining Room),PistolAmmo,RES,Common Room,
+Fuse,ElevatorFuse,RES,,
+10mm Ammo (Protektor Levels - East STAR Dorm),PistolAmmo,RES,STAR Dorm North,
+Shutter Gate Handle,ShutterHandle,RES,,
+Repair Spray+ (Protektor Levels - FKLR Bedroom),HealthFast,RES,Falkes Bedroom,
+Disposable Stun Prod (Protektor Levels - FKLR Bedroom),Taser,RES,Falkes Bedroom,
+10mm Ammo (Protektor Levels - FKLR Bedroom),PistolAmmo,RES,Falkes Bedroom,
+Flashlight Module,Flashlight,RES,,
+Astrolabe,ShrineDial,RES,,
+Repair Spray (Protektor Levels - Library),Health50,RES,Library,
+Hummingbird Key,KolibriKey,RES,,
+Disposable Stun Prod (Protektor Levels - KLBR Study),Taser,RES,Kolibris Study,
+Eagle Key,AdlersKey,RES,,
+Autoinjector (Protektor Levels - Repair Bay),Injector,RES,Repair Bay,
+Shotgun Rounds (Protektor Levels - Shooting Range),ShotgunAmmo,RES,Shooting Range,
+12mm Ammo (Protektor Levels - Shooting Range),RevolverAmmo,RES,Shooting Range,
+Weapon Case,ShotgunCase,RES,,
+Island Key,PaintingKey,RES,,
+10mm Ammo (Protektor Levels - Protektor Archive),PistolAmmo,RES,Protektor Archive,
+Hunter's Key,ShotgunCaseKey,RES,,
+Adhesive Tape (Protektor Levels),Tape,RES,,
+Shotgun Rounds (Protektor Levels - ADLR Bedroom),ShotgunAmmo,RES,Adlers Bedroom,
+"Shotgun Rounds (Protektor Levels - STCR Dorm, 8th Floor)",ShotgunAmmo,RES,STCR/KNCR Dorm,
+"Repair Spray+ (Protektor Levels - STCR Dorm, 8th Floor)",HealthFast,RES,STCR/KNCR Dorm,
+"10mm Ammo (Protektor Levels - STCR Dorm, 8th Floor)",PistolAmmo,RES,STCR/KNCR Dorm,
+"Repair Spray (Protektor Levels - STCR Dorm, 8th Floor)",Health50,RES,STCR/KNCR Dorm,
+"12mm Ammo (Protektor Levels - STCR Dorm, 8th Floor)",RevolverAmmo,RES,STCR/KNCR Dorm,
+Key of Eternity,KeyOfEternity,RES,,
+Shotgun Rounds (Protektor Levels - KLBR Bedroom),ShotgunAmmo,RES,Kolibris Bedroom,
+Postbox Key,PostboxKey,RES,,
+Administrator's Key,MasterKey,RES,,
+Owl Key,OwlKey,RES,,
+Disposable Stun Prod (Protektor Levels - EULR Dorm),Taser,RES,EULR Dorm (Music Lover),
+Broken Music Cassette,MuscCassetteBroken,RES,,
+Workshop Key,WorkshopKey,RES,,
+12mm Ammo (Protektor Levels - Workshop),RevolverAmmo,RES,Workshop,
+10mm Ammo (Protektor Levels - Workshop),PistolAmmo,RES,Workshop,
+Library Key,LibraryKey,RES,,
+Nitro Express Ammo (Mineshaft - Wire Room),RifleAmmo,EXC,Monowire,
+Repair Spray (Mineshaft - Save Room),Health50,EXC,Office (Save Room),
+Flare Gun,FlareGun,EXC,,
+Signal Flare Shells (Mineshaft - Save Room),FlareGunAmmo,EXC,Office (Save Room),
+Repair Spray (Mineshaft - STAR/EULR Room),Health50,EXC,Star Room,
+12mm Ammo (Mineshaft - STAR/EULR Room),RevolverAmmo,EXC,Star Room,
+10mm Ammo (Mineshaft - STAR/EULR Room),PistolAmmo,EXC,Star Room,
+Repair Spray (Mineshaft - Hatch Room),Health50,EXC,Hatch Room,
+10mm Ammo (Mineshaft - Hole Room),PistolAmmo,EXC,The Hole,
+Repair Spray (Mineshaft - Hole Room),Health50,EXC,The Hole,
+Repair Spray (Nowhere - Morgue),Health50,LAB,Morgue Holes,
+Autoinjector (Nowhere - Altar),Injector,LAB,Shrine Room,
+10mm Ammo (Nowhere - Operating Room),PistolAmmo,LAB,OBGYN,
+12mm Ammo (Nowhere - Operating Room),RevolverAmmo,LAB,OBGYN,
+Disposable Stun Prod (Nowhere - Blood Tub Room),Taser,LAB,Nursery,
+Large Wooden Doll,Doll_B,LAB,,
+Repair Patch (Nowhere - Flesh Hole),Health25,LAB,Hole,
+Nitro Express Ammo (Nowhere - Microphone Room),RifleAmmo,LAB,Pattern Viewer,
+Wedding Ring,RingBride,LAB,,
+Thermite Flare (Nowhere - Save Room After Chimera Boss),SignalFlare,LAB,Bedroom (Save Room),
+10mm Ammo (Nowhere - Save Room After Chimera Boss),PistolAmmo,LAB,Bedroom (Save Room),
+Repair Patch (Nowhere - Cage Piles #1),Health25,LAB,Cage Room,
+Disposable Stun Rod (Nowhere - Cage Piles #1),Taser,LAB,Cage Room,
+Signal Flare Shells (Nowhere - Red Ladder Up),FlareGunAmmo,LAB,Meat Ladder Room,
+Repair Spray+ (Nowhere - Tentacle Room),HealthFast,LAB,Mid Ladder Room,
+Regent's Ring,RingRegent,LAB,,
+Small Bottle,Salts,LAB,,
+Repair Spray (Nowhere - Barbwire Room #1),Health50,LAB,Flesh,
+Plate of Flesh,PlateFlesh,LAB,,
+Rusted Key,RustedKey,LAB,,
+Serpent Ring,RingSerpent,LAB,,
+Shotgun Rounds (Nowhere - Dark Hall),ShotgunAmmo,LAB,Glass Cage Room,
+10mm Ammo (Nowhere - Cage Piles #2),PistolAmmo,LAB,Carcass Hall,
+Nitro Express Ammo (Nowhere - Cage Piles #2),RifleAmmo,LAB,Carcass Hall,
+Signal Flare Shells (Nowhere - Crowded Room),FlareGunAmmo,LAB,Surgery,
+Small Wooden Doll,Doll_S,LAB,,
+Shotgun Rounds (Nowhere - Crowded Room),ShotgunAmmo,LAB,Surgery,
+Repair Spray+ (Nowhere - Hummingbird Corridor),HealthFast,LAB,Loop Hall,
+Shotgun Rounds (Nowhere - Hummingbird Corridor),ShotgunAmmo,LAB,Loop Hall,
+Grenade Shells (Nowhere - Lamp Room),FlakGunAmmo,LAB,Radio Room,
+Incense,Incense,LAB,,
+10mm Ammo (Nowhere - Empress Room),PistolAmmo,LAB,Chapel,
+Plate of Balance,PlateBalance,LAB,,
+Plate of Knowledge,PlateKnowledge,LAB,,
+12mm Ammo (Nowhere - Interrogation Room),RevolverAmmo,LAB,Torture Room,
+Wooden Doll,Doll_M,LAB,,
+Grenade Shells (Nowhere - Interrogation Room),FlakGunAmmo,LAB,Torture Room,
+Repair Spray (Nowhere - Barbwire Room #2),Health50,LAB,Sacrifice,
+Plate of Sacrifice,PlateSacrifice,LAB,,
+Plate of Love,PlateLove,LAB,,
+Grenade Shells (Corrupted Installation Aeon - Classroom 4B),FlakGunAmmo,BIO,SafeClassroom,
+Classroom Key (Corrupted Installation Aeon),ClassroomKey,BIO,,
+Thermite Flare (Rotfront - Blockwart Bedroom),SignalFlare,ROT,Blockwart Bedroom (Save Room),
+Repair Patch (Rotfront - Blockwart Bedroom),Health25,ROT,Blockwart Bedroom (Save Room),
+Submachine Gun,SMG,ROT,,
+8mm Ammo (Rotfront - Blockwart Office),SmgAmmo,ROT,Blockwart Office,
+Grenade Shells (Rotfront - Ruined Apartment),FlakGunAmmo,ROT,Train Apartment,
+Shotgun Rounds (Rotfront - Ruined Apartment),ShotgunAmmo,ROT,Train Apartment,
+10mm Ammo (Rotfront - Dormitory),PistolAmmo,ROT,Student Dorm,
+Repair Spray (Rotfront - Dormitory),Health50,ROT,Student Dorm,
+Repair Spray (Rotfront - Apartment North of Blue Hallway),Health50,ROT,Worker Apartment,
+12mm Ammo (Rotfront - Apartment North of Blue Hallway),RevolverAmmo,ROT,Worker Apartment,
+Handwheel,ValveHandwheel,ROT,,
+Nitro Express Ammo (Rotfront - Apartment North of Blue Hallway),RifleAmmo,ROT,Worker Apartment,
+Developing Tank,DeveloperBox,ROT,,
+Repair Spray+ (Rotfront - Atrium),HealthFast,ROT,Lobby Gallery,
+Signal Flare Shells (Rotfront - Hospital Hallway),FlareGunAmmo,ROT,Hospital Hallway,
+Autoinjector (Rotfront - Hospital Room),Injector,ROT,Hospital Room,
+Store Key,StoreKey,ROT,,
+Star,TarotStar,ROT,,
+12mm Ammo (Rotfront - Garbage Chute),RevolverAmmo,ROT,Garbage Chute (Down),
+Blue Diskette,DiskBlue,ROT,,
+Acetone,Turpentine,ROT,,
+Disposable Stun Prod (Rotfront - Meat Grinder),Taser,ROT,Meat Grinder,
+Repair Spray (Rotfront - Public House),Health50,ROT,Butcher Store,
+8mm Ammo (Rotfront - Public House),SmgAmmo,ROT,Butcher Store,
+Shotgun Rounds (Rotfront - Public House),ShotgunAmmo,ROT,Butcher Store,
+Tower,TarotTower,ROT,,
+10mm Ammo (Rotfront - Metro Platform),PistolAmmo,ROT,Metro Station,
+Disposable Stun Prod (Rotfront - Metro Platform),Taser,ROT,Metro Station,
+Repair Spray (Rotfront - Computer Store),Health50,ROT,Computer Store (Save Room),
+Patient Key,MeatKey,ROT,,
+12mm Ammo (Rotfront - Fire Escape),RevolverAmmo,ROT,Fire Ladder (Down),
+Disposable Stun Prod (Rotfront - Apartment North of Alley),Taser,ROT,Tooth Apartment,
+Repair Spray (Rotfront - Apartment North of Alley),Health50,ROT,Tooth Apartment,
+Thermite Flare (Rotfront - Butterfly Room),SignalFlare,ROT,Butterfly Apartment,
+Nitro Express Ammo (Rotfront - Butterfly Room),RifleAmmo,ROT,Butterfly Apartment,
+Shotgun Rounds (Rotfront - Dentist Room),ShotgunAmmo,ROT,Dentist Office,
+Repair Patch (Rotfront - Dentist Room),Health25,ROT,Dentist Office,
+Red Diskette,DiskRed,ROT,,
+8mm Ammo (Rotfront - Dentist Room),SmgAmmo,ROT,Dentist Office,
+Moon,TarotMoon,ROT,,
+8mm Ammo (Rotfront - Photo Store),SmgAmmo,ROT,Photo Store,
+Developer Fluid,DeveloperFluid,ROT,,
+Sun,TarotSun,ROT,,
+Death,TarotDeath,ROT,,
+Autoinjector (Rotfront - Book Store),Injector,ROT,Book Store,
+Key of Sacrifice,KeyOfSacrifice,ROT,,
+Lovers,TarotLovers,ROT,,
+Dial,MoonRing,ROT,,

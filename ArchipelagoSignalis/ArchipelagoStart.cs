@@ -78,7 +78,8 @@ namespace ArchipelagoSignalis
                         ArchipelagoItemName = values[0],
                         InGameName = values[1],
                         Scene = values[2],
-                        Room = values[3]
+                        Room = values[3],
+                        Position = values[4]
                     };
                     locationMappings.Add(locationMapping);
                 }
@@ -116,14 +117,15 @@ namespace ArchipelagoSignalis
             return values.ToArray();
         }
 
-        public static string GetArchipelagoItemNameFromLocation(string inGameName, string scene, string room)
+        public static string GetArchipelagoItemNameFromLocation(string inGameName, string scene, string room, string position)
         {
             try
             {
-                MelonLogger.Msg($"Looking for item mapping for {inGameName} in {scene} {room}");
+                MelonLogger.Msg($"Looking for item mapping for {inGameName} in {scene} {room} at position {position}");
                 var locationMapping = locationMappings.FirstOrDefault(im =>
                     im.InGameName == inGameName && im.Scene == scene &&
-                    (string.IsNullOrEmpty(im.Room) || im.Room == room));
+                    (string.IsNullOrEmpty(im.Room) || im.Room == room) &&
+                    (string.IsNullOrEmpty(im.Position) || im.Position == position));
                 MelonLogger.Msg($"Found location mapping :: {locationMapping?.ArchipelagoItemName}");
                 return locationMapping?.ArchipelagoItemName;
             }
@@ -133,6 +135,21 @@ namespace ArchipelagoSignalis
                 return "null";
 
             }
+        }
+
+        private static string HandleMultipleLocationSameItemInSameRoom(string locationMappingArchipelagoItemName)
+        {
+            long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, locationMappingArchipelagoItemName);
+            bool sentFirstInstance = ArchipelagoHelper.Session.Locations.AllLocationsChecked.Contains(locationId);
+            if (sentFirstInstance && locationMappingArchipelagoItemName == "10mm Ammo (Worker Barracks - Mensa, Top of Room)")
+            {
+                return "10mm Ammo (Worker Barracks - Mensa, Bottom of Room)";
+            }
+            else if (sentFirstInstance && locationMappingArchipelagoItemName == "Shotgun Rounds (Hospital Wing - HDU 02, Northwest)")
+            {
+                return "Shotgun Rounds (Hospital Wing - HDU 02, Southwest)";
+            }
+            return "null";
         }
 
         public static string GetSignalisItemNameFromArchipelagoLocation(string archipelagoName)
