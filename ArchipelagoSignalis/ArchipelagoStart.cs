@@ -119,6 +119,12 @@ namespace ArchipelagoSignalis
 
         public static string GetArchipelagoItemNameFromLocation(string inGameName, string scene, string room, string position)
         {
+            // There are two instances of STCR Dorm, take from gameObject name which is unique
+            if (room == "STCR Dorm")
+            {
+                room = PlayerState.currentRoom.gameObject.name;
+            }
+            
             try
             {
                 MelonLogger.Msg($"Looking for item mapping for {inGameName} in {scene} {room} at position {position}");
@@ -133,23 +139,7 @@ namespace ArchipelagoSignalis
             {
                 MelonLogger.Error($"Error in GetArchipelagoItemNameFromLocation: {ex}");
                 return "null";
-
             }
-        }
-
-        private static string HandleMultipleLocationSameItemInSameRoom(string locationMappingArchipelagoItemName)
-        {
-            long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, locationMappingArchipelagoItemName);
-            bool sentFirstInstance = ArchipelagoHelper.Session.Locations.AllLocationsChecked.Contains(locationId);
-            if (sentFirstInstance && locationMappingArchipelagoItemName == "10mm Ammo (Worker Barracks - Mensa, Top of Room)")
-            {
-                return "10mm Ammo (Worker Barracks - Mensa, Bottom of Room)";
-            }
-            else if (sentFirstInstance && locationMappingArchipelagoItemName == "Shotgun Rounds (Hospital Wing - HDU 02, Northwest)")
-            {
-                return "Shotgun Rounds (Hospital Wing - HDU 02, Southwest)";
-            }
-            return "null";
         }
 
         public static string GetSignalisItemNameFromArchipelagoLocation(string archipelagoName)
