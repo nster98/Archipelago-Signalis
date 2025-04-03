@@ -123,9 +123,7 @@ namespace ArchipelagoSignalis
 
                     MelonLogger.Msg($"isYellowKing {isYellowKing} : isDuplicateItem {isDuplicateItem} : locationChecked : {locationChecked} : locationInRightRoom : {locationInRightRoom}");
 
-                    if (!isYellowKing
-                        && ((isDuplicateItem && locationInRightRoom)
-                            || (!locationChecked && locationInRightRoom)))
+                    if (!isYellowKing && locationInRightRoom)
                     {
                         RemoveItemFromInventory(item._item.ToString(), __instance.count);
                         MelonLogger.Msg($"Removed item {item._item} from inventory");
@@ -133,9 +131,9 @@ namespace ArchipelagoSignalis
                     else if (string.Equals(item._item.ToString(), "YellowKing", StringComparison.OrdinalIgnoreCase))
                     {
                         MelonLogger.Msg("Yellow King location checked, storing all items");
+                        RemoveItemFromInventory("YellowKing", 1);
                         InventoryManager.storeAllItems();
                         RetrieveItem.AddItemToInventory("YellowKing");
-                        // TODO: Add all items to inventory EXCEPT yellow king
                     }
 
                     var fullItemName = item._item.ToString();
@@ -168,9 +166,13 @@ namespace ArchipelagoSignalis
     [HarmonyPatch(typeof(RadioModuleAcquirer), "getRadioModule")]
     public static class DetectRadioPickup
     {
-        private static void Prefix()
+        private static void Postfix()
         {
             MelonLogger.Msg("Picked up Radio");
+            long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, "Radio Module");
+            MelonLogger.Msg($"Location ID: {locationId}");
+            ArchipelagoHelper.Session.Locations.CompleteLocationChecks(locationId);
+            RadioManager.moduleInstalled = false;
         }
     }
 }

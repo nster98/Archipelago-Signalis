@@ -103,11 +103,7 @@ namespace ArchipelagoSignalis
 
         public static void GiveRadio()
         {
-            // if (Input.GetKeyDown(KeyCode.F10))
-            // {
-                // MelonLogger.Msg("F10 key pressed");
-                RadioManager.moduleInstalled = true;
-            // }
+            RadioManager.moduleInstalled = true;
         }
 
         public static void ListenForItemReceived(ArchipelagoSession session)

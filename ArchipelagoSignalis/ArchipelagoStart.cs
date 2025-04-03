@@ -163,7 +163,6 @@ namespace ArchipelagoSignalis
             LevelSelect.OpenIntruderLevelSelect();
             LevelSelect.TrackUnlockedDoors();
             RetrieveItem.CheckForF9KeyPress();
-            RetrieveItem.GiveRadio();
 
             DeathLink.CheckDeath();
         }
