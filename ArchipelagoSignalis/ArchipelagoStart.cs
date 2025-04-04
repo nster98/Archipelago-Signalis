@@ -27,6 +27,7 @@ namespace ArchipelagoSignalis
     {
         private static List<LocationMapping> locationMappings;
         private static List<ItemMapping> itemMappings;
+        public static GameObject settingsMenuGameObject = null;
 
         public override void OnInitializeMelon()
         {
@@ -198,6 +199,8 @@ namespace ArchipelagoSignalis
         {
             if (sceneName == "MainMenu")
             {
+                settingsMenuGameObject = GameObject.Find("MainScreen");
+
                 GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
                 foreach (GameObject gameObject in objects)
                 {

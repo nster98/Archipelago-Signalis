@@ -13,7 +13,7 @@ namespace ArchipelagoSignalis
     class LevelSelect : MelonMod
     {
         private static List<string> intruderLevelNames = ["PEN", "LOV", "DET", "MED", "RES", "EXC", "LAB", "MEM", "BIO", "ROT", "END", "TEST"];
-        private static bool isDebug = true;
+        private static bool isDebug = false;
         private static List<string> doorsLockedList = new List<string>();
         public static bool isInventoryOpen = false;
         public static string currentScene = "";
