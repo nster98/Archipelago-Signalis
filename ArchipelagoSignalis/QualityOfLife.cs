@@ -13,7 +13,7 @@ namespace ArchipelagoSignalis
     {
         public static void OpenStorageBoxFromAnywhereListener()
         {
-            if (Input.GetKeyDown(KeyCode.F11))
+            if (Input.GetKeyDown(KeyCode.F11) && !LevelSelect.isInventoryOpen)
             {
                 MelonLogger.Msg("F11 key pressed");
                 InventoryBase.OpenStorageBox();

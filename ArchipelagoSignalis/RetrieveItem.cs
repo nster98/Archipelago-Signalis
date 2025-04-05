@@ -62,7 +62,7 @@ namespace ArchipelagoSignalis
             else
             {
                 MelonLogger.Msg($"Attempting to add item to inventory: {itemName}");
-                if (itemName.Contains("Radio Module"))
+                if (itemName.Contains("Radio"))
                 {
                     GiveRadio();
                     SaveManagement.UpdateItemsReceived(itemName);
