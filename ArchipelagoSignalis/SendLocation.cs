@@ -168,11 +168,20 @@ namespace ArchipelagoSignalis
     {
         private static void Postfix()
         {
-            MelonLogger.Msg("Picked up Radio");
-            long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, "Radio Module");
-            MelonLogger.Msg($"Location ID: {locationId}");
-            ArchipelagoHelper.Session.Locations.CompleteLocationChecks(locationId);
-            RadioManager.moduleInstalled = false;
+            // Ensure that Radio location can not be checked unless from the cutscene to pick it up
+            if (PlayerState.currentRoom.roomName == "Evidence Storage")
+            {
+                MelonLogger.Msg("Sending location for Radio Module");
+                long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, "Radio Module");
+                MelonLogger.Msg($"Location ID: {locationId}");
+                ArchipelagoHelper.Session.Locations.CompleteLocationChecks(locationId);
+
+                // If Radio hasn't been sent as an item, keep the radio off
+                if (!RadioManager.moduleInstalled)
+                {
+                    RadioManager.moduleInstalled = false;
+                }
+            }
         }
     }
 }

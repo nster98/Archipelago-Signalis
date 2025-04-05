@@ -131,7 +131,8 @@ namespace ArchipelagoSignalis
             int archipelagoItemsSize = session.Items.AllItemsReceived.Count;
             int gameItemsSize = SaveManagement.ItemsReceived.Split(',').Length - 1;
 
-            MelonLogger.Msg($"Archipelago items: {archipelagoItemsSize}, Game items: {gameItemsSize}");
+            MelonLogger.Msg($"Archipelago Items List {string.Join(",", session.Items.AllItemsReceived.Select(item => item.ItemName))}");
+            MelonLogger.Msg($"Archipelago items count: {archipelagoItemsSize}, Game items count: {gameItemsSize}");
 
             if (archipelagoItemsSize > gameItemsSize)
             {

@@ -26,17 +26,6 @@ namespace ArchipelagoSignalis
             {
                 sendDeathLinkOnce = true;
             }
-            
-            // if (Input.GetKeyDown(KeyCode.F3))
-            // {
-            //     MelonLogger.Msg("Received Death Link");
-            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-            //     PlayerState.HurtPlayer.Invoke(10000, Vector2.down);
-            // }
-            
         }
 
         public static void KillElster()

@@ -103,6 +103,8 @@ namespace ArchipelagoSignalis
 
         public static void GiveRadio()
         {
+            MelonLogger.Msg("Setting Radio module installed to true");
+            MelonLogger.Msg($"Current Radio Module Installed value : {RadioManager.moduleInstalled}");
             RadioManager.moduleInstalled = true;
         }
 

@@ -154,7 +154,7 @@ namespace ArchipelagoSignalis
         {
             MelonLogger.Msg($"Looking for item mapping for {archipelagoName}");
             var itemMapping = itemMappings.FirstOrDefault(im => im.ArchipelagoItemName == archipelagoName);
-            MelonLogger.Msg($"Found item mapping :: {itemMapping?.ArchipelagoItemName}");
+            MelonLogger.Msg($"Found item mapping :: {itemMapping?.InGameName}");
             return itemMapping?.InGameName;
         }
 

@@ -95,11 +95,6 @@ namespace ArchipelagoSignalis
         {
             MelonLogger.Msg("Loading save");
 
-            for (var i = 0; i < SProgress.progress.boolKeys.Count; i++)
-            {
-                MelonLogger.Msg($"Key: {SProgress.progress.boolKeys[i]} | Value: {SProgress.progress.bools[i]}");
-            }
-
             SaveManagement.LocationsChecked = SProgress.GetString("LocationsChecked", "");
             SaveManagement.ItemsReceived = SProgress.GetString("ItemsReceived", "");
             SaveManagement.LevelsReached = SProgress.GetString("LevelsReached", "");
