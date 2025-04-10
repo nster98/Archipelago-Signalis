@@ -76,6 +76,7 @@ namespace ArchipelagoSignalis
                 }
 
                 var countOfItems = GetCountOfItemsToAddToInventory(itemName);
+                MelonLogger.Msg($"Count of item : {countOfItems}");
 
                 foreach (AnItem item in InventoryManager.allItems.Values)
                 {
@@ -129,18 +130,20 @@ namespace ArchipelagoSignalis
 
         public static int GetCountOfItemsToAddToInventory(string itemName)
         {
+            MelonLogger.Msg($"AmmoPickupMultiplier : {DynamicDifficulty.AmmoPickupMultiplier}");
+            MelonLogger.Msg($"HealthPickupMultiplier : {DynamicDifficulty.HealthPickupMultiplier}");
             if (itemName.Contains("Ammo"))
             {
-                if (itemName.Contains("FlakGun")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 2;
-                if (itemName.Contains("FlareGun")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 2;
-                if (itemName.Contains("Pistol")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 10;
-                if (itemName.Contains("Revolver")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 6;
-                if (itemName.Contains("Rifle")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 3;
-                if (itemName.Contains("Shotgun")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 3;
-                if (itemName.Contains("Smg")) return (int) DynamicDifficulty.AmmoPickupMultiplier * 16;
+                if (itemName.Contains("FlakGun")) return (int)(DynamicDifficulty.AmmoPickupMultiplier * 2);
+                if (itemName.Contains("FlareGun")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 2);
+                if (itemName.Contains("Pistol")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 10);
+                if (itemName.Contains("Revolver")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 6);
+                if (itemName.Contains("Rifle")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 3);
+                if (itemName.Contains("Shotgun")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 3);
+                if (itemName.Contains("Smg")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 16);
             } else if (itemName.Contains("Health"))
             {
-                return (int) DynamicDifficulty.HealthPickupMultiplier * 1;
+                return (int) (DynamicDifficulty.HealthPickupMultiplier * 1);
             }
             else if (itemName.Contains("SignalFlare"))
             {
