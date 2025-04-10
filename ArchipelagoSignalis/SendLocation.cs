@@ -18,6 +18,24 @@ namespace ArchipelagoSignalis
 
             if (null != ArchipelagoHelper.Session && ArchipelagoHelper.Session.Socket.Connected)
             {
+                MelonLogger.Msg($"Sending item {translatedArchipelagoItemName} to Archipelago");
+                long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, translatedArchipelagoItemName);
+                MelonLogger.Msg($"Location ID: {locationId}");
+                ArchipelagoHelper.Session.Locations.CompleteLocationChecks(locationId);
+            }
+            else
+            {
+                MelonLogger.Msg("Archipelago session is null, not sending item");
+            }
+        }
+
+        public static void SendCheckToArchipelago(string itemName, string scene, string position)
+        {
+            var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemNameFromLocation(itemName, scene, PlayerState.currentRoom.roomName, position);
+            SaveManagement.UpdateLocationsChecked(translatedArchipelagoItemName);
+
+            if (null != ArchipelagoHelper.Session && ArchipelagoHelper.Session.Socket.Connected)
+            {
                 MelonLogger.Msg($"Sending item {itemName} to Archipelago");
                 long locationId = ArchipelagoHelper.Session.Locations.GetLocationIdFromName(ArchipelagoHelper.GameName, translatedArchipelagoItemName);
                 MelonLogger.Msg($"Location ID: {locationId}");
@@ -34,7 +52,7 @@ namespace ArchipelagoSignalis
             if (sceneName.Contains("LOV") && !SaveManagement.LocationsChecked.Contains("Receive Photo of Alina"))
             {
                 MelonLogger.Msg("Manually sending location Receive Photo of Alina to Archipelago");
-                SendCheckToArchipelago("AlinaPhoto", "");
+                SendCheckToArchipelago("AlinaPhoto", "LOV", "");
                 RemoveItemFromInventory("AlinaPhoto", 1);
             }
         }
