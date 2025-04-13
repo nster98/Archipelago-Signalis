@@ -11,6 +11,14 @@ namespace ArchipelagoSignalis
 {
     class SendLocation : MelonMod
     {
+        public static Queue<string> RemoveItemQueue = new();
+
+        public static List<PlayerState.gameStates> validGameStatesForItems =
+        [
+            PlayerState.gameStates.play,
+            PlayerState.gameStates.eventScreen
+        ];
+
         public static void SendCheckToArchipelago(string itemName, string position)
         {
             var translatedArchipelagoItemName = ArchipelagoStart.GetArchipelagoItemNameFromLocation(itemName, LevelSelect.currentScene, PlayerState.currentRoom.roomName, position);
@@ -57,7 +65,7 @@ namespace ArchipelagoSignalis
             }
         }
 
-        private static void RemoveItemFromInventory(string itemName, int count)
+        public static void RemoveItemFromInventory(string itemName, int count)
         {
             // TODO: This is likely more efficient now that it will end up calling here but I don't want to test it
             // foreach (AnItem item in InventoryManager.allItems.Values)
@@ -68,26 +76,35 @@ namespace ArchipelagoSignalis
             //         break;
             //     }
             // }
-            var itemCount = count;
-            List<string> elsterItems = new List<string>();
-            do
+
+            if (!validGameStatesForItems.Contains(PlayerState.gameState))
             {
-                elsterItems.Clear();
-                MelonLogger.Msg($"Removing item {itemName} from inventory");
-                foreach (AnItem item in InventoryManager.allItems.Values)
+                MelonLogger.Msg("Queuing item to remove");
+                RemoveItemQueue.Enqueue(itemName + "," + count);
+            }
+            else
+            {
+                var itemCount = count;
+                List<string> elsterItems = new List<string>();
+                do
                 {
-                    if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+                    elsterItems.Clear();
+                    MelonLogger.Msg($"Removing item {itemName} from inventory");
+                    foreach (AnItem item in InventoryManager.allItems.Values)
                     {
-                        InventoryManager.RemoveItem(item);
+                        if (string.Equals(itemName, item.name, StringComparison.OrdinalIgnoreCase))
+                        {
+                            InventoryManager.RemoveItem(item);
+                        }
                     }
-                }
-                foreach (var item in InventoryManager.elsterItems)
-                {
-                    MelonLogger.Msg(item.key._item.ToString());
-                    elsterItems.Add(item.key._item.ToString());
-                }
-                itemCount--;
-            } while (itemCount != 0);
+                    foreach (var item in InventoryManager.elsterItems)
+                    {
+                        MelonLogger.Msg(item.key._item.ToString());
+                        elsterItems.Add(item.key._item.ToString());
+                    }
+                    itemCount--;
+                } while (itemCount != 0);
+            }
         }
 
         [HarmonyPatch(typeof(ItemPickup), "release")]
@@ -104,7 +121,7 @@ namespace ArchipelagoSignalis
                 MelonLogger.Msg($"Position: {__instance.gameObject.transform.position.x} {__instance.gameObject.transform.position.y}");
 
                 // Infinite pickups in Mynah Arena to avoid softlock
-                if (playerState.roomName == "Surgery Mynah")
+                if (playerState.roomName == "Surgery")
                 {
                     __instance.dontDestroyOnPickup = true;
                 }
@@ -124,7 +141,7 @@ namespace ArchipelagoSignalis
                     {
                         return;
                     }
-                    if (PlayerState.currentRoom.roomName == "Surgery Mynah")
+                    if (PlayerState.currentRoom.roomName == "Surgery")
                     {
                         return;
                     }
@@ -176,7 +193,8 @@ namespace ArchipelagoSignalis
                 var isHealth = (item.Contains("Health") || item.Contains("Injector"));
                 var isAmmo = item.Contains("Ammo");
                 var isFlare = item.Contains("SignalFlare");
-                return (isHealth || isAmmo || isFlare);
+                var isTaser = item.Contains("Taser");
+                return (isHealth || isAmmo || isFlare || isTaser);
             }
         }
     }

@@ -54,7 +54,8 @@ namespace ArchipelagoSignalis
         {
             // Adding item while inventory is open will crash the game
             // Queue the item instead, and add it when inventory is closed
-            if (LevelSelect.isInventoryOpen)
+            // Game State contains inventory enum, will also be checked
+            if (!SendLocation.validGameStatesForItems.Contains(PlayerState.gameState))
             {
                 MelonLogger.Msg($"Adding item to queue: {itemName}");
                 RetrieveItemQueue.Enqueue(itemName);
@@ -102,6 +103,24 @@ namespace ArchipelagoSignalis
             }
         }
 
+        public static void DequeueItemsOnPlay()
+        {
+            if (SendLocation.validGameStatesForItems.Contains(PlayerState.gameState))
+            {
+                while (RetrieveItem.RetrieveItemQueue.Any())
+                {
+                    RetrieveItem.AddItemToInventory(RetrieveItem.RetrieveItemQueue.Dequeue());
+                }
+
+                while (SendLocation.RemoveItemQueue.Any())
+                {
+                    var itemToRemove = SendLocation.RemoveItemQueue.Dequeue().Split(',');
+                    MelonLogger.Msg("Dequeuing Item to remove");
+                    SendLocation.RemoveItemFromInventory(itemToRemove[0], Convert.ToInt32(itemToRemove[1]));
+                }
+            }
+        }
+
         public static void GiveRadio()
         {
             MelonLogger.Msg("Setting Radio module installed to true");
@@ -130,8 +149,6 @@ namespace ArchipelagoSignalis
 
         public static int GetCountOfItemsToAddToInventory(string itemName)
         {
-            MelonLogger.Msg($"AmmoPickupMultiplier : {DynamicDifficulty.AmmoPickupMultiplier}");
-            MelonLogger.Msg($"HealthPickupMultiplier : {DynamicDifficulty.HealthPickupMultiplier}");
             if (itemName.Contains("Ammo"))
             {
                 if (itemName.Contains("FlakGun")) return (int)(DynamicDifficulty.AmmoPickupMultiplier * 2);
