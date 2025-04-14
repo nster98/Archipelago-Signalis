@@ -165,6 +165,7 @@ namespace ArchipelagoSignalis
             LevelSelect.TrackUnlockedDoors();
             RetrieveItem.CheckForF9KeyPress();
             RetrieveItem.DequeueItemsOnPlay();
+            RetrieveItem.UpdateRadio();
             DeathLink.CheckDeath();
         }
 

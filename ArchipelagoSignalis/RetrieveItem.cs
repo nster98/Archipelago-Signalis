@@ -66,7 +66,6 @@ namespace ArchipelagoSignalis
                 if (itemName.Contains("Radio"))
                 {
                     GiveRadio();
-                    SaveManagement.UpdateItemsReceived(itemName);
                     return;
                 }
 
@@ -107,15 +106,15 @@ namespace ArchipelagoSignalis
         {
             if (SendLocation.validGameStatesForItems.Contains(PlayerState.gameState))
             {
-                while (RetrieveItem.RetrieveItemQueue.Any())
+                while (RetrieveItemQueue.Any())
                 {
-                    RetrieveItem.AddItemToInventory(RetrieveItem.RetrieveItemQueue.Dequeue());
+                    AddItemToInventory(RetrieveItemQueue.Dequeue());
                 }
 
                 while (SendLocation.RemoveItemQueue.Any())
                 {
                     var itemToRemove = SendLocation.RemoveItemQueue.Dequeue().Split(',');
-                    MelonLogger.Msg("Dequeuing Item to remove");
+                    MelonLogger.Msg($"Dequeuing Item to remove : {itemToRemove}");
                     SendLocation.RemoveItemFromInventory(itemToRemove[0], Convert.ToInt32(itemToRemove[1]));
                 }
             }
@@ -125,7 +124,12 @@ namespace ArchipelagoSignalis
         {
             MelonLogger.Msg("Setting Radio module installed to true");
             MelonLogger.Msg($"Current Radio Module Installed value : {RadioManager.moduleInstalled}");
-            RadioManager.moduleInstalled = true;
+            SaveManagement.UpdateItemsReceived("Radio");
+        }
+
+        public static void UpdateRadio()
+        {
+            RadioManager.moduleInstalled = SaveManagement.ItemsReceived.Contains("Radio");
         }
 
         public static void ListenForItemReceived(ArchipelagoSession session)

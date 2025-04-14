@@ -9,6 +9,7 @@ using MelonLoader;
 
 namespace ArchipelagoSignalis
 {
+
     class SendLocation : MelonMod
     {
         public static Queue<string> RemoveItemQueue = new();
@@ -79,7 +80,7 @@ namespace ArchipelagoSignalis
 
             if (!validGameStatesForItems.Contains(PlayerState.gameState))
             {
-                MelonLogger.Msg("Queuing item to remove");
+                MelonLogger.Msg($"Queuing item to remove : {itemName},{count}");
                 RemoveItemQueue.Enqueue(itemName + "," + count);
             }
             else
@@ -99,7 +100,6 @@ namespace ArchipelagoSignalis
                     }
                     foreach (var item in InventoryManager.elsterItems)
                     {
-                        MelonLogger.Msg(item.key._item.ToString());
                         elsterItems.Add(item.key._item.ToString());
                     }
                     itemCount--;

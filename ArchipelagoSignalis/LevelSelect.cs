@@ -53,14 +53,14 @@ namespace ArchipelagoSignalis
                 UnlockPreviouslyUnlockedDoors();
             }
 
-            GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-            foreach (GameObject gameObject in objects)
-            {
-                if (gameObject.activeInHierarchy && null != gameObject.GetComponentByName("Room"))
-                {
-                    MelonLogger.Msg($"Scene : {sceneName} : {gameObject.name}");
-                }
-            }
+            // GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+            // foreach (GameObject gameObject in objects)
+            // {
+            //     if (gameObject.activeInHierarchy && null != gameObject.GetComponentByName("Room"))
+            //     {
+            //         MelonLogger.Msg($"Scene : {sceneName} : {gameObject.name}");
+            //     }
+            // }
         }
 
         public static void UnlockPreviouslyUnlockedDoors()
@@ -69,8 +69,8 @@ namespace ArchipelagoSignalis
             doorsLockedList = new List<string>();
             foreach (ConnectedDoors door in doors)
             {
-                MelonLogger.Msg($"Door : {door.name}");
-                MelonLogger.Msg($"DoorsUnlocked String : {SaveManagement.DoorsUnlocked}");
+                // MelonLogger.Msg($"Door : {door.name}");
+                // MelonLogger.Msg($"DoorsUnlocked String : {SaveManagement.DoorsUnlocked}");
                 if (null != door.key)
                 {
                     doorsLockedList.Add(door.key._item.ToString());
