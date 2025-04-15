@@ -63,8 +63,8 @@ Autoinjector (Hospital Wing - Exam Room),Injector,MED,Exam Room,
 10mm Socket,Socket10mm,MED,,
 Thermite Flare (Hospital Wing - Incinerator Room),SignalFlare,MED,Incinerator,
 Fire Key,KeyOfFire,MED,,
-10mm Ammo (Hospital Wing - Surgery, East),PistolAmmo,MED,Surgery Prep,-28.99
-10mm Ammo (Hospital Wing - Surgery, West),PistolAmmo,MED,Surgery Prep,-64.62
+"10mm Ammo (Hospital Wing - Surgery, East)",PistolAmmo,MED,Surgery Prep,-28.99
+"10mm Ammo (Hospital Wing - Surgery, West)",PistolAmmo,MED,Surgery Prep,-64.62
 Shotgun Rounds (Hospital Wing - Surgery),ShotgunAmmo,MED,Surgery Prep,
 Repair Patch (Hospital Wing - Surgery),Health25,MED,Surgery Prep,
 Maintenance Key,FloodOverflowKey,RES,,
