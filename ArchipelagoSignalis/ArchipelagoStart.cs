@@ -161,6 +161,7 @@ namespace ArchipelagoSignalis
         public override void OnUpdate()
         {
             QualityOfLife.OpenStorageBoxFromAnywhereListener();
+            QualityOfLife.CheckRotfrontMeatVersion();
             LevelSelect.OpenIntruderLevelSelect();
             LevelSelect.TrackUnlockedDoors();
             RetrieveItem.CheckForF9KeyPress();
