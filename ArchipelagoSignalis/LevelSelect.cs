@@ -50,7 +50,7 @@ namespace ArchipelagoSignalis
             if (intruderLevelNames.Contains(appendedSceneName))
             {
                 SaveManagement.UpdateLevelsReached(appendedSceneName);
-                UnlockPreviouslyUnlockedDoors();
+                UnlockPreviouslyUnlockedDoors(appendedSceneName);
             }
 
             // GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
@@ -63,7 +63,7 @@ namespace ArchipelagoSignalis
             // }
         }
 
-        public static void UnlockPreviouslyUnlockedDoors()
+        public static void UnlockPreviouslyUnlockedDoors(string scene)
         {
             ConnectedDoors[] doors = UnityEngine.Object.FindObjectsOfType<ConnectedDoors>();
             doorsLockedList = new List<string>();
@@ -73,13 +73,27 @@ namespace ArchipelagoSignalis
                 // MelonLogger.Msg($"DoorsUnlocked String : {SaveManagement.DoorsUnlocked}");
                 if (null != door.key)
                 {
-                    doorsLockedList.Add(door.key._item.ToString());
-
-                    if (SaveManagement.DoorsUnlocked.Contains(door.key._item.ToString()))
+                    if (scene == "BIO")
                     {
-                        MelonLogger.Msg($"Unlocking door: {door.key._item.ToString()}");
-                        door.locked = false;
+                        var classroomKeyBio = door.key._item.ToString() + "_BIO";
+                        doorsLockedList.Add(classroomKeyBio);
+                        if (SaveManagement.DoorsUnlocked.Contains(classroomKeyBio))
+                        {
+                            MelonLogger.Msg($"Unlocking door: {classroomKeyBio}");
+                            door.locked = false;
+                        }
                     }
+                    else
+                    {
+                        doorsLockedList.Add(door.key._item.ToString());
+                        if (SaveManagement.DoorsUnlocked.Contains(door.key._item.ToString()))
+                        {
+                            MelonLogger.Msg($"Unlocking door: {door.key._item.ToString()}");
+                            door.locked = false;
+                        }
+                    }
+                    
+                    
                 }
             }
         }
@@ -91,10 +105,21 @@ namespace ArchipelagoSignalis
             ConnectedDoors[] doors = UnityEngine.Object.FindObjectsOfType<ConnectedDoors>();
             foreach (ConnectedDoors door in doors)
             {
-                if (null != door.key && !door.locked && doorsLockedList.Contains(door.key._item.ToString()))
+                var sceneName = SceneManager.GetActiveScene().name.Substring(0, 3);
+                if (null != door.key && !door.locked)
                 {
-                    doorsLockedList.Remove(door.key._item.ToString());
-                    SaveManagement.UpdateDoorsUnlocked(door.key._item.ToString());
+                    if (sceneName == "BIO" && doorsLockedList.Contains(door.key._item.ToString() + "_BIO"))
+                    {
+                        var classroomKeyBio = door.key._item.ToString() + "_BIO";
+                        doorsLockedList.Remove(classroomKeyBio);
+                        SaveManagement.UpdateDoorsUnlocked(classroomKeyBio);
+                    }
+                    else if (doorsLockedList.Contains(door.key._item.ToString()))
+                    {
+                        doorsLockedList.Remove(door.key._item.ToString());
+                        SaveManagement.UpdateDoorsUnlocked(door.key._item.ToString());
+                    }
+                        
                 }
             }
         }
