@@ -53,6 +53,8 @@ namespace ArchipelagoSignalis
                 UnlockPreviouslyUnlockedDoors(appendedSceneName);
             }
 
+            ResetInactiveGameObjectFlags(appendedSceneName);
+
             // GameObject[] objects = UnityEngine.Object.FindObjectsOfType<GameObject>();
             // foreach (GameObject gameObject in objects)
             // {
@@ -61,6 +63,19 @@ namespace ArchipelagoSignalis
             //         MelonLogger.Msg($"Scene : {sceneName} : {gameObject.name}");
             //     }
             // }
+        }
+
+        private static void ResetInactiveGameObjectFlags(string appendedSceneName)
+        {
+            if (appendedSceneName != "ROT")
+            {
+                QualityOfLife.SetMeatVersion = false;
+            }
+
+            if (appendedSceneName != "DET")
+            {
+                RetrieveItem.SetRadioHint = false;
+            }
         }
 
         public static void UnlockPreviouslyUnlockedDoors(string scene)

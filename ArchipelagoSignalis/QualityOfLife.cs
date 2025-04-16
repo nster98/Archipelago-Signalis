@@ -12,7 +12,7 @@ namespace ArchipelagoSignalis
 {
     class QualityOfLife : MelonMod
     {
-        private static bool setMeatVersion = false;
+        public static bool SetMeatVersion = false;
         public static void OpenStorageBoxFromAnywhereListener()
         {
             if (Input.GetKeyDown(KeyCode.F11) && !LevelSelect.isInventoryOpen)
@@ -31,7 +31,7 @@ namespace ArchipelagoSignalis
                 && SaveManagement.LocationsChecked.Contains("Sun")
                 && SaveManagement.LocationsChecked.Contains("Tower")
                 && SaveManagement.LocationsChecked.Contains("Star")
-                && !setMeatVersion)
+                && !SetMeatVersion)
             {
                 GameObject meatVersion = null;
                 GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>(true);
@@ -47,10 +47,10 @@ namespace ArchipelagoSignalis
                     }
                 }
 
-                if (meatVersion != null && !setMeatVersion)
+                if (meatVersion != null && !SetMeatVersion)
                 {
                     meatVersion.SetActive(true);
-                    setMeatVersion = true;
+                    SetMeatVersion = true;
                     MelonLogger.Msg("Setting MeatVersion to true");
                 }
             }

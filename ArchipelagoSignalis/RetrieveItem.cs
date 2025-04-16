@@ -9,12 +9,14 @@ using Archipelago.MultiClient.Net.Models;
 using MelonLoader;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ArchipelagoSignalis
 {
     public class RetrieveItem : MelonMod
     {
         public static Queue<string> RetrieveItemQueue = new();
+        public static bool SetRadioHint = false;
 
         public static async void CheckForF9KeyPress()
         {
@@ -129,7 +131,31 @@ namespace ArchipelagoSignalis
 
         public static void UpdateRadio()
         {
-            RadioManager.moduleInstalled = SaveManagement.ItemsReceived.Contains("Radio");
+            var activeRadio = SaveManagement.ItemsReceived.Contains("Radio");
+            RadioManager.moduleInstalled = activeRadio;
+
+            if (SceneManager.GetActiveScene().name.Contains("DET") && activeRadio && !SetRadioHint)
+            {
+                GameObject radioObject = null;
+                GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>(true);
+                if (radioObject == null)
+                {
+                    foreach (var gameObject in gameObjects)
+                    {
+                        if (gameObject.name == "Radio")
+                        {
+                            MelonLogger.Msg("Found Radio");
+                            radioObject = gameObject;
+                        }
+                    }
+                }
+                if (radioObject != null && !SetRadioHint)
+                {
+                    radioObject.SetActive(true);
+                    SetRadioHint = true;
+                    MelonLogger.Msg("Setting Radio to true");
+                }
+            }
         }
 
         public static void ListenForItemReceived(ArchipelagoSession session)
