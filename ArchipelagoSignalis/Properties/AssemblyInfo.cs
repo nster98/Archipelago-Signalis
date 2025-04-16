@@ -5,8 +5,8 @@ using MelonLoader;
 using ArchipelagoSignalis;
 
 // Mod Setup
-[assembly: MelonInfo(typeof(ArchipelagoStart), "Archipelago Signalis", "0.0.1", "Nathan Glikman")]
-[assembly: MelonGame("", "")]
+[assembly: MelonInfo(typeof(ArchipelagoStart), "Archipelago Signalis", "0.3.19", "nster98")]
+[assembly: MelonGame("rose-engine", "Signalis")]
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
