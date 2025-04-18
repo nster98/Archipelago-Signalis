@@ -69,8 +69,8 @@ namespace ArchipelagoSignalis
                 PopulateItemsCollectedAfterLogin(Session);
                 SendItemsAfterLogin(Session);
                 RetrieveItem.ListenForItemReceived(Session);
-                
-                var isDeathLinkEnabled = Session.ConnectionInfo.Tags.Contains("DeathLink");
+
+                var isDeathLinkEnabled = (long)((LoginSuccessful)loginResultTask.Result).SlotData["deathlink"] == 1;
                 if (isDeathLinkEnabled)
                 {
                     DeathLinkService = Session.CreateDeathLinkService();
