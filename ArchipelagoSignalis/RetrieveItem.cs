@@ -183,8 +183,8 @@ namespace ArchipelagoSignalis
             {
                 if (itemName.Contains("FlakGun")) return (int)(DynamicDifficulty.AmmoPickupMultiplier * 2);
                 if (itemName.Contains("FlareGun")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 2);
-                if (itemName.Contains("Pistol")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 10);
-                if (itemName.Contains("Revolver")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 6);
+                if (itemName.Contains("Pistol")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 3);
+                if (itemName.Contains("Revolver")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 4);
                 if (itemName.Contains("Rifle")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 3);
                 if (itemName.Contains("Shotgun")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 3);
                 if (itemName.Contains("Smg")) return (int) (DynamicDifficulty.AmmoPickupMultiplier * 16);

@@ -73,8 +73,8 @@ namespace ArchipelagoSignalis
                 var isDeathLinkEnabled = Session.ConnectionInfo.Tags.Contains("DeathLink");
                 if (isDeathLinkEnabled)
                 {
-                    Session.CreateDeathLinkService().EnableDeathLink();
                     DeathLinkService = Session.CreateDeathLinkService();
+                    DeathLinkService.EnableDeathLink();
 
                     DeathLinkService.OnDeathLinkReceived += (deathLinkObject) =>
                     {
