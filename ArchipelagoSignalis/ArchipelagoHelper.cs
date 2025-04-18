@@ -9,6 +9,7 @@ using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Packets;
 using MelonLoader;
+using Newtonsoft.Json;
 
 namespace ArchipelagoSignalis
 {
