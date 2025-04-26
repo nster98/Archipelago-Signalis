@@ -209,7 +209,7 @@ namespace ArchipelagoSignalis
                     if (gameObject.activeInHierarchy && gameObject.name == "Version")
                     {
                         TextMeshPro text = gameObject.GetComponent<TextMeshPro>();
-                        text.m_text += " | Archipelago v0.1.0";
+                        text.m_text += " | Archipelago v0.1.2";
                     }
                 }
             }

@@ -15,9 +15,9 @@ namespace ArchipelagoSignalis
 {
     class ArchipelagoHelper
     {
-        public static string SlotName = "Signalis";
-        public static string Server = "localhost";
-        public static string Port = "38281";
+        public static string SlotName = "";
+        public static string Server = "";
+        public static string Port = "";
         public static string Password = "";
         public const string GameName = "Signalis";
 

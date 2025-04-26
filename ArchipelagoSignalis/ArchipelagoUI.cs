@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
+using TMPro;
 using UnityEngine;
 using UnityEngineInternal.Input;
 
@@ -85,6 +86,21 @@ namespace ArchipelagoSignalis
                     //         _isEditing = true;
                     //     }
                     // }
+                    GUILayout.EndHorizontal();
+
+                    GUIStyle style = new GUIStyle();
+                    // style.font = Font.CreateDynamicFontFromOSFont("visitor2", 24);
+
+                    GUILayout.BeginHorizontal(null);
+                    GUILayout.Label("Custom Keybinds for Archipelago", null);
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginHorizontal(null);
+                    GUILayout.Label("F8 - Opens Level Select", null);
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.BeginHorizontal(null);
+                    GUILayout.Label("F11 - Open Storage Box From Anywhere", null);
                     GUILayout.EndHorizontal();
 
                     GUILayout.EndVertical();
