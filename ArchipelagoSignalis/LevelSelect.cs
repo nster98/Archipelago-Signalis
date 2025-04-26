@@ -47,6 +47,7 @@ namespace ArchipelagoSignalis
                 // Scenes where the cutscene will load fine, not needed to force the play state
                 if (appendedSceneName != "PEN")
                 {
+                    MelonLogger.Msg("Setting gamestate to play");
                     PlayerState.gameState = PlayerState.gameStates.play;
                 }
             }
