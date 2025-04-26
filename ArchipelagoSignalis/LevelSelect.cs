@@ -13,7 +13,7 @@ namespace ArchipelagoSignalis
     class LevelSelect : MelonMod
     {
         private static List<string> intruderLevelNames = ["PEN", "LOV", "DET", "MED", "RES", "EXC", "LAB", "MEM", "BIO", "ROT", "END", "TEST"];
-        private static bool isDebug = false;
+        private static bool isDebug = true;
         private static List<string> doorsLockedList = new List<string>();
         public static bool isInventoryOpen = false;
         public static string currentScene = "";
@@ -44,7 +44,11 @@ namespace ArchipelagoSignalis
             // TODO: Check all possible cutscenes and states
             if (SaveManagement.LevelsReached.Contains(appendedSceneName))
             {
-                PlayerState.gameState = PlayerState.gameStates.play;
+                // Scenes where the cutscene will load fine, not needed to force the play state
+                if (appendedSceneName != "PEN")
+                {
+                    PlayerState.gameState = PlayerState.gameStates.play;
+                }
             }
 
             if (intruderLevelNames.Contains(appendedSceneName))
@@ -126,6 +130,11 @@ namespace ArchipelagoSignalis
             foreach (ConnectedDoors door in doors)
             {
                 var sceneName = SceneManager.GetActiveScene().name.Substring(0, 3);
+                if (sceneName == "PEN" || sceneName == "MEM")
+                {
+                    // First scene, don't need to unlock doors
+                    continue;
+                }
                 if (null != door.key && !door.locked)
                 {
                     if (sceneName == "BIO" && doorsLockedList.Contains(door.key._item.ToString() + "_BIO"))
