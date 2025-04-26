@@ -84,8 +84,6 @@ namespace ArchipelagoSignalis
             doorsLockedList = new List<string>();
             foreach (ConnectedDoors door in doors)
             {
-                // MelonLogger.Msg($"Door : {door.name}");
-                // MelonLogger.Msg($"DoorsUnlocked String : {SaveManagement.DoorsUnlocked}");
                 if (null != door.key)
                 {
                     if (scene == "BIO")
@@ -107,8 +105,15 @@ namespace ArchipelagoSignalis
                             door.locked = false;
                         }
                     }
-                    
-                    
+                } else if (door.BacktrackDoor)
+                {
+                    var backtrackDoorName = door.name + "_" + scene;
+                    doorsLockedList.Add(backtrackDoorName);
+                    if (SaveManagement.DoorsUnlocked.Contains(backtrackDoorName))
+                    {
+                        MelonLogger.Msg($"Unlocking door: {backtrackDoorName}");
+                        door.locked = false;
+                    }
                 }
             }
         }
@@ -134,7 +139,14 @@ namespace ArchipelagoSignalis
                         doorsLockedList.Remove(door.key._item.ToString());
                         SaveManagement.UpdateDoorsUnlocked(door.key._item.ToString());
                     }
-                        
+                } else if (door.BacktrackDoor && !door.locked)
+                {
+                    var backtrackDoorName = door.name + "_" + sceneName;
+                    if (doorsLockedList.Contains(backtrackDoorName))
+                    {
+                        doorsLockedList.Remove(backtrackDoorName);
+                        SaveManagement.UpdateDoorsUnlocked(backtrackDoorName);
+                    }
                 }
             }
         }
