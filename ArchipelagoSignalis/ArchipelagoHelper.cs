@@ -20,6 +20,7 @@ namespace ArchipelagoSignalis
         public static string Port = "";
         public static string Password = "";
         public const string GameName = "Signalis";
+        public const long IsArtifactEnding = 0;
 
         public static ArchipelagoSession Session;
         public static DeathLinkService DeathLinkService;
@@ -72,6 +73,7 @@ namespace ArchipelagoSignalis
                 RetrieveItem.ListenForItemReceived(Session);
 
                 var isDeathLinkEnabled = (long)((LoginSuccessful)loginResultTask.Result).SlotData["deathlink"] == 1;
+                IsArtifactEnding = (long)((LoginSuccessful)loginResultTask.Result).SlotData["ending_artifact"];
                 if (isDeathLinkEnabled)
                 {
                     DeathLinkService = Session.CreateDeathLinkService();

@@ -15,8 +15,10 @@ namespace ArchipelagoSignalis
     {
         public static void DetectSecretEnding()
         {
-            MelonLogger.Msg("Secret ending triggered");
-            SendCompletionToArchipelago();
+            if (ArchipelagoHelper.IsArtifactEnding == 1) {
+                MelonLogger.Msg("Secret ending triggered");
+                SendCompletionToArchipelago();
+            }
         }
 
         public static void SendCompletionToArchipelago()
@@ -32,8 +34,10 @@ namespace ArchipelagoSignalis
     {
         private static void Prefix()
         {
-            MelonLogger.Msg("Ending triggered");
-            GameCompletion.SendCompletionToArchipelago();
+            if (ArchipelagoHelper.IsArtifactEnding == 0) {
+                MelonLogger.Msg("Ending triggered");
+                GameCompletion.SendCompletionToArchipelago();
+            }
         }
     }
 }
