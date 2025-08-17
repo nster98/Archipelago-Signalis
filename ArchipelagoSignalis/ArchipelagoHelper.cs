@@ -20,7 +20,7 @@ namespace ArchipelagoSignalis
         public static string Port = "";
         public static string Password = "";
         public const string GameName = "Signalis";
-        public const long IsArtifactEnding = 0;
+        public static long IsArtifactEnding = 0;
 
         public static ArchipelagoSession Session;
         public static DeathLinkService DeathLinkService;
