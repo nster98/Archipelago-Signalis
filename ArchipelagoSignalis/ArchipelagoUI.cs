@@ -13,30 +13,14 @@ namespace ArchipelagoSignalis
     class ArchipelagoUI
     {
         public static bool InSettingsMenu = false;
-        private static bool _isEditing = false;
-        private static int pointX = 5;
-        private static int pointY = 305;
+        private static int pointX = 260;
+        private static int pointY = 280;
 
         public static void RenderArchipelagoSettingsUi()
         {
             if (InSettingsMenu)
             {
-                if (!_isEditing)
-                {
-                    GUILayout.BeginArea(new Rect(pointX, pointY, 250, 200));
-                    GUILayout.BeginHorizontal(null);
-                    if (GUILayout.Button("Enter Archipelago Connection", null))
-                    {
-                        pointX = Camera.current.pixelWidth / 2 - 125;
-                        ArchipelagoStart.settingsMenuGameObject.SetActive(false);
-                        _isEditing = true;
-                    }
-                    GUILayout.EndHorizontal();
-                    GUILayout.EndArea();
-                }
-                else
-                {
-                    GUILayout.BeginArea(new Rect(pointX, pointY, 250, 200));
+                    GUILayout.BeginArea(new Rect(Camera.current.pixelWidth - pointX, pointY, 250, 200));
 
                     GUILayout.BeginVertical(null);
 
@@ -65,27 +49,8 @@ namespace ArchipelagoSignalis
                     GUILayout.EndHorizontal();
 
                     GUILayout.BeginHorizontal(null);
-                    if (_isEditing)
-                    {
-                        // Create a button to stop editing
-                        if (GUILayout.Button("Done", null))
-                        {
-                            pointX = 5;
-                            pointY = 305;
-                            ArchipelagoStart.settingsMenuGameObject.SetActive(true);
-                            _isEditing = false;
-                        }
-                    }
-                    // else
-                    // {
-                    //     // Create a button to start editing
-                    //     if (GUILayout.Button("Edit", null))
-                    //     {
-                    //         pointX = Camera.current.pixelWidth / 2 - 125;
-                    //         ArchipelagoStart.settingsMenuGameObject.SetActive(false);
-                    //         _isEditing = true;
-                    //     }
-                    // }
+                    GUILayout.Label("DeathLink", null);
+                    ArchipelagoHelper.IsDeathLinked = GUILayout.Toggle(ArchipelagoHelper.IsDeathLinked, "", null);
                     GUILayout.EndHorizontal();
 
                     GUIStyle style = new GUIStyle();
@@ -105,7 +70,6 @@ namespace ArchipelagoSignalis
 
                     GUILayout.EndVertical();
                     GUILayout.EndArea();
-                }
                 
             }
         }

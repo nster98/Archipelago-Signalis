@@ -19,6 +19,7 @@ namespace ArchipelagoSignalis
         public static string Server = "";
         public static string Port = "";
         public static string Password = "";
+        public static bool IsDeathLinked = false;
         public const string GameName = "Signalis";
 
         public static ArchipelagoSession Session;
@@ -62,32 +63,29 @@ namespace ArchipelagoSignalis
                 return;
             }
 
-            MelonLogger.Msg($"Login was successful: {loginResultTask.Result}");
-            if (loginResultTask.Result.Successful)
-            {
-                MelonLogger.Msg($"Connected to {Server + ":" + Port} as {SlotName}");
-                RetrieveItemsAfterLogin(Session);
-                PopulateItemsCollectedAfterLogin(Session);
-                SendItemsAfterLogin(Session);
-                RetrieveItem.ListenForItemReceived(Session);
-
-                var isDeathLinkEnabled = (long)((LoginSuccessful)loginResultTask.Result).SlotData["deathlink"] == 1;
-                if (isDeathLinkEnabled)
-                {
-                    DeathLinkService = Session.CreateDeathLinkService();
-                    DeathLinkService.EnableDeathLink();
-
-                    DeathLinkService.OnDeathLinkReceived += (deathLinkObject) =>
-                    {
-                        MelonLogger.Msg($"Player {deathLinkObject.Source} has died.");
-                        DeathLink.KillElster();
-                    };
-
-                }
-            }
-            else
+            if (!loginResultTask.Result.Successful)
             {
                 Session = null;
+                return;
+            }
+            MelonLogger.Msg($"Login was successful: {loginResultTask.Result}");
+            MelonLogger.Msg($"Connected to {Server + ":" + Port} as {SlotName}");
+            RetrieveItemsAfterLogin(Session);
+            PopulateItemsCollectedAfterLogin(Session);
+            SendItemsAfterLogin(Session);
+            RetrieveItem.ListenForItemReceived(Session);
+
+            // var isDeathLinkEnabled = (long)((LoginSuccessful)loginResultTask.Result).SlotData["deathlink"] == 1;
+            if (IsDeathLinked)
+            {
+                DeathLinkService = Session.CreateDeathLinkService();
+                DeathLinkService.EnableDeathLink();
+
+                DeathLinkService.OnDeathLinkReceived += (deathLinkObject) =>
+                {
+                    MelonLogger.Msg($"Player {deathLinkObject.Source} has died.");
+                    DeathLink.KillElster();
+                };
             }
         }
 
