@@ -14,12 +14,9 @@ Full info and set up on this Randomizer: [https://github.com/devoidlazarus/SIGNA
 6. Launch SIGNALIS
 7. Open the Settings menu and select Enter Archipelago Connection
 8. Enter your Archipelago slot name, server, and port information
-   - It is a known issue at the moment that you cannot see the cursor when entering your Archipelago connection settings. Please use the `Tab` key to select different fields of the form
 9. Select Done
-   - If you cannot locate your cursor to select Done, hold down `Alt` and press `Tab` to exit the game window momentarily, line up your visible cursor with where the Done button would be, press `Tab` until the SIGNALIS window is selected, and then release `Alt`
 10. Exit the Settings menu
 11. Select Continue
-    - If you have no existing save files, skip to step 15
 12. Select Begin Anew
 
-Any time you launch SIGNALIS to play an existing randomized save file, repeat steps #9-15 to successfully load into your save and connect to Archipelago.
+Any time you launch SIGNALIS to play an existing randomized save file, repeat steps #7-11 and then load into your save and connect to Archipelago.
